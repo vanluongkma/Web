@@ -41,4 +41,7 @@
 - Một yêu cầu thường gồm 3 thông tin cơ bản sau:
     - **HTTP Methods**
     - **Path**
-    - **HTTP version** 
+    - **HTTP version**
+- Ở đây mình có ảnh mô tả request:
+![image](https://github.com/user-attachments/assets/6f3c9686-c8dd-4007-afd4-7e7825c7209f)
+
