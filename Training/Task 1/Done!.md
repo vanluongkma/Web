@@ -2,3 +2,24 @@
 - **HTTP** hay **HyperText Transfer Protocol** là một giao thức truyền tải siêu văn bản, là nền tảng của `World Wide Web`. Nó cho phép các máy tính (`client`) giao tiếp với nhau qua mạng để truy cập và hiển thị các tài nguyên web như trang web, hình ảnh, video,...
 - Nếu không có `HTTP`, `World Wide Web` như chúng ta biết ngày nay sẽ không tồn tại. HTTP là giao thức cho phép truyền dữ liệu qua internet, cho phép người dùng truy cập các trang web và các tài nguyên trực tuyến khác.
 - **Cách thức hoạt động:** khi gõ một địa chỉ web vào trình duyệt, trình duyệt sẽ gửi một yêu cầu (`request`) đến máy chủ (`server`) chứa tài nguyên đó thông qua giao thức **HTTP**. Máy chủ sẽ xử lý yêu cầu và gửi lại một phản hồi (`response`) chứa dữ liệu cần thiết. Trình duyệt sẽ nhận phản hồi và hiển thị nội dung lên màn hình.
+- Chi tiết hơn thì HTTP hoạt động như sau:
+    - HTTP hoạt động dựa trên mô hình khách-chủ.
+        - **Client-Server:** 
+            - `Client`: Thường là trình duyệt web, gửi yêu cầu đến máy chủ.
+            - `Server`: Máy tính lưu trữ các tài nguyên web, nhận yêu cầu và trả về kết quả.
+    - Giao tiếp diễn ra qua các cặp yêu cầu và phản hồi:
+        - **Requests-Responses** 
+            - `Requests` client gửi một yêu cầu đến server, có thể bao gồm:
+                - Phương thức: GET, POST, PUT, DELETE, ... (mỗi phương thức có tác động khác nhau đến tài nguyên)
+                - URL: Địa chỉ tài nguyên cần truy cập
+                - Header: Thông tin bổ sung về yêu cầu
+            - `Responses` server xử lý yêu cầu và gửi lại một phản hồi, bao gồm:
+                - Status code: Mã trạng thái cho biết kết quả của yêu cầu (ví dụ: 200 OK, 404 Not Found)
+                - Header: Thông tin bổ sung về phản hồi
+                - Body: Dữ liệu được yêu cầu
+    - Ví dụ:
+        - Ta nhập địa chỉ trang web: https://www.youtube.com vào trình duyệt.
+        - Trình duyệt sẽ gửi request HTTP GET đến máy chủ.
+        - Máy chủ sẽ tìm kiếm trang chủ và gửi response chứa mã HTML của trang về trình duyệt.
+        - Trình duyệt nhận được mã HTML và hiển thị nội dung trang lên màn hình của bạn.
+    - Sơ đồ hoạt động:
