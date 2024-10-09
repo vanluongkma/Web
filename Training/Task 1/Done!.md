@@ -1,4 +1,4 @@
-## The HTTP Protocol
+## The HTTP Protocol.
 - **HTTP** hay **HyperText Transfer Protocol** là một giao thức truyền tải siêu văn bản, là nền tảng của `World Wide Web`. Nó cho phép các máy tính (`client`) giao tiếp với nhau qua mạng để truy cập và hiển thị các tài nguyên web như trang web, hình ảnh, video,...
 - Nếu không có `HTTP`, `World Wide Web` như chúng ta biết ngày nay sẽ không tồn tại. HTTP là giao thức cho phép truyền dữ liệu qua internet, cho phép người dùng truy cập các trang web và các tài nguyên trực tuyến khác.
 - **Cách thức hoạt động:** khi gõ một địa chỉ web vào trình duyệt, trình duyệt sẽ gửi một yêu cầu (`request`) đến máy chủ (`server`) chứa tài nguyên đó thông qua giao thức **HTTP**. Máy chủ sẽ xử lý yêu cầu và gửi lại một phản hồi (`response`) chứa dữ liệu cần thiết. Trình duyệt sẽ nhận phản hồi và hiển thị nội dung lên màn hình.
@@ -35,4 +35,10 @@
         - Không đảm bảo tính toàn vẹn của dữ liệu: Dữ liệu truyền qua HTTP có thể bị thay đổi hoặc làm hỏng trong quá trình truyền tải.
         - Không có cơ chế xác thực: HTTP không có cơ chế xác thực mạnh mẽ, dẫn đến nguy cơ giả mạo.
         - Stateless: HTTP là một giao thức không trạng thái, nghĩa là mỗi yêu cầu đều độc lập và server không lưu trữ thông tin về các yêu cầu trước đó. Điều này có thể dẫn đến việc phải truyền đi nhiều thông tin trùng lặp.
-        
+
+## HTTP Requests.
+- **HTTP Requests** hiểu đơn giản như là yêu cầu của `client` gửi lên `server`. Khi đó `server` có nhiệm vụ tìm và xử lý các loại dữ liệu, thông tin, client mong muốn.
+- Một yêu cầu thường gồm 3 thông tin cơ bản sau:
+    - **HTTP Methods**
+    - **Path**
+    - **HTTP version** 
