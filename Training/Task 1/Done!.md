@@ -23,3 +23,4 @@
         - Máy chủ sẽ tìm kiếm trang chủ và gửi response chứa mã HTML của trang về trình duyệt.
         - Trình duyệt nhận được mã HTML và hiển thị nội dung trang lên màn hình của bạn.
     - Sơ đồ hoạt động:
+![image](https://github.com/user-attachments/assets/00e8852b-d58c-471b-b856-47ebe571031f)
