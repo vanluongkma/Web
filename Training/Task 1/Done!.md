@@ -1,0 +1,4 @@
+## The HTTP Protocol
+- **HTTP** hay **HyperText Transfer Protocol** là một giao thức truyền tải siêu văn bản, là nền tảng của `World Wide Web`. Nó cho phép các máy tính (`client`) giao tiếp với nhau qua mạng để truy cập và hiển thị các tài nguyên web như trang web, hình ảnh, video,...
+- Nếu không có `HTTP`, `World Wide Web` như chúng ta biết ngày nay sẽ không tồn tại. HTTP là giao thức cho phép truyền dữ liệu qua internet, cho phép người dùng truy cập các trang web và các tài nguyên trực tuyến khác.
+- **Cách thức hoạt động:** khi gõ một địa chỉ web vào trình duyệt, trình duyệt sẽ gửi một yêu cầu (`request`) đến máy chủ (`server`) chứa tài nguyên đó thông qua giao thức **HTTP**. Máy chủ sẽ xử lý yêu cầu và gửi lại một phản hồi (`response`) chứa dữ liệu cần thiết. Trình duyệt sẽ nhận phản hồi và hiển thị nội dung lên màn hình.
