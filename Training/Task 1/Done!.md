@@ -24,3 +24,13 @@
         - Trình duyệt nhận được mã HTML và hiển thị nội dung trang lên màn hình của bạn.
     - Sơ đồ hoạt động:
 ![image](https://github.com/user-attachments/assets/00e8852b-d58c-471b-b856-47ebe571031f)
+Ưu điểm của HTTP:
+Đơn giản và dễ sử dụng: Cấu trúc của HTTP tương đối đơn giản, dễ hiểu và triển khai, giúp các lập trình viên dễ dàng tích hợp vào các ứng dụng của mình.
+Phổ biến và được hỗ trợ rộng rãi: HTTP được hầu hết các trình duyệt web và máy chủ web hỗ trợ, đảm bảo tính tương thích cao.
+Linh hoạt: HTTP có thể được sử dụng để truyền tải nhiều loại dữ liệu khác nhau, từ văn bản đến hình ảnh, video, và các loại file khác.
+Mở và không độc quyền: HTTP là một giao thức mở, không thuộc về bất kỳ tổ chức nào, giúp giảm chi phí và tăng tính cạnh tranh.
+Nhược điểm của HTTP:
+Không bảo mật: HTTP truyền dữ liệu dưới dạng văn bản thuần túy, không được mã hóa, dễ bị nghe lén và đánh cắp thông tin.
+Không đảm bảo tính toàn vẹn của dữ liệu: Dữ liệu truyền qua HTTP có thể bị thay đổi hoặc làm hỏng trong quá trình truyền tải.
+Không có cơ chế xác thực: HTTP không có cơ chế xác thực mạnh mẽ, dẫn đến nguy cơ giả mạo.
+Stateless: HTTP là một giao thức không trạng thái, nghĩa là mỗi yêu cầu đều độc lập và server không lưu trữ thông tin về các yêu cầu trước đó. Điều này có thể dẫn đến việc phải truyền đi nhiều thông tin trùng lặp.
