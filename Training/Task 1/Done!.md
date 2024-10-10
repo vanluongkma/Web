@@ -94,9 +94,18 @@
     - **Path:** Đường dẫn đến tài nguyên.
     - **Query:** Tham số.
     - **Fragment:** Mỏ neo.
+- Chi tiết hơn thì:
 ![image](https://github.com/user-attachments/assets/790d5ee3-c87a-4e07-8817-47ab645155af)
 
-
+| Phần | Mô tả | Ví dụ |
+|---|---|---|
+| **Scheme** | Giao thức truyền thông sử dụng để truy cập tài nguyên. Thường gặp nhất là http (Hypertext Transfer Protocol) và https (Hypertext Transfer Protocol Secure). | http:// |
+| **Authority** | Phần xác định máy chủ, bao gồm tên miền và có thể cả cổng. | www.example.com:80 |
+|   - **Domain Name** | Tên miền của website. | www.example.com |
+|   - **Port** | Cổng mà máy chủ lắng nghe. Nếu không có, cổng mặc định của giao thức sẽ được sử dụng (ví dụ: 80 cho http). | :80 |
+| **Path** | Đường dẫn đến tài nguyên trên máy chủ. | /path/to/myfile.html |
+| **Query** | Các tham số truyền thêm cho máy chủ, thường được sử dụng để truyền dữ liệu hoặc tùy chỉnh yêu cầu. | ?key1=value1&key2=value2 |
+| **Fragment** | Phần mỏ neo, dùng để chỉ định một vị trí cụ thể trên trang. | #SomewhereInTheDocument |
 - Vai trò của URL:
     - Xác định duy nhất: Mỗi tài nguyên trên Internet có một URL duy nhất.
     - Dễ nhớ: URL thường được thiết kế để dễ nhớ và liên quan đến nội dung của trang.
