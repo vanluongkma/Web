@@ -123,8 +123,37 @@
     - **If-Modified-Since:** Yêu cầu máy chủ chỉ gửi dữ liệu nếu nó đã được sửa đổi kể từ thời gian được chỉ định.
     - **Cache-Control:** Cung cấp các hướng dẫn về việc cache dữ liệu.
 
-## Cookies
+## Cookies.
 - **Cookies** là những đoạn văn bản nhỏ được gửi từ một trang web đến trình duyệt của bạn và được lưu trữ trên thiết bị của bạn. Chúng giống như những "tấm thẻ nhớ" nhỏ, giúp các trang web nhớ thông tin về bạn và các hoạt động của bạn trên trang web đó.
 - Có hai loại **Cookies** chính:
     - **First-party cookies:** Được tạo bởi trang web bạn đang truy cập.
     - **Third-party cookies:** Được tạo bởi các trang web khác, như công cụ phân tích hoặc quảng cáo, được nhúng vào trang web bạn đang truy cập.
+- **Cookies** đùng để:
+    - **Lưu trữ thông tin đăng nhập:** Giúp bạn không phải nhập lại mật khẩu mỗi khi truy cập trang web.
+    - **Cá nhân hóa trải nghiệm người dùng:** Nhớ các cài đặt của bạn, như ngôn ngữ, font chữ, hoặc các sản phẩm bạn đã xem.
+    - **Theo dõi hành vi người dùng:** Giúp các trang web hiểu rõ hơn về cách người dùng tương tác với trang web, từ đó cải thiện trải nghiệm người dùng và hiệu quả của quảng cáo.
+
+## Status Codes.
+- **Status Codes** là những **mã số** được trả về từ máy chủ web đến trình duyệt của bạn sau khi request được gửi đi. Chúng cung cấp thông tin về kết quả của yêu cầu đó, cho phép cả máy chủ và trình duyệt hiểu được tình trạng của yêu cầu.
+- **Status Codes**được chia thành các nhóm theo chữ số đầu tiên, mỗi nhóm đại diện cho một loại phản hồi khác nhau:
+    - **1xx (Thông báo):** Yêu cầu đã được nhận và đang được xử lý.
+    - **2xx (Thành công):** Yêu cầu đã được thực hiện thành công. (ví dụ: **200 OK:** Yêu cầu đã được thực hiện thành công.)
+    - **3xx (Chuyển hướng):** Để hoàn thành yêu cầu, trình duyệt cần thực hiện một hành động khác (ví dụ: **301 Moved Permanently:** Tài nguyên đã được chuyển đến một URL mới vĩnh viễn).
+    - **4xx (Lỗi của Client):** Lỗi xảy ra do yêu cầu từ phía người dùng (ví dụ: **404 Not Found:** Tài nguyên không tìm thấy).
+    - **5xx (Lỗi của Server):** Lỗi xảy ra do vấn đề ở phía máy chủ (ví dụ: **500 Internal Server Error:** Máy chủ gặp lỗi trong khi xử lý yêu cầu).
+
+## HTTPS.
+- **HTTPS** hay **HyperText Transfer Protocol Secure** là một phiên bản mở rộng của HTTP, giao thức truyền tải siêu văn bản được sử dụng rộng rãi trên Internet để truyền tải dữ liệu giữa máy chủ và trình duyệt. Thực chất, đây chính là giao thức **HTTP** nhưng tích hợp thêm **Chứng chỉ bảo mật SSL** nhằm mã hóa các thông điệp giao tiếp để tăng tính bảo mật. Có thể hiểu, **HTTPS** là phiên bản **HTTP** an toàn, bảo mật hơn.
+
+| Tính năng | HTTP | HTTPS |
+|---|---|---|
+| **Ý nghĩa** | HyperText Transfer Protocol | HyperText Transfer Protocol Secure |
+| **Mục đích** | Truyền tải dữ liệu trên web | Truyền tải dữ liệu trên web một cách **bảo mật** |
+| **Mã hóa** | Không | Sử dụng SSL/TLS để mã hóa dữ liệu |
+| **Xác thực** | Không xác thực danh tính máy chủ | Xác thực danh tính máy chủ bằng chứng chỉ SSL |
+| **Toàn vẹn dữ liệu** | Không đảm bảo dữ liệu không bị thay đổi | Đảm bảo dữ liệu không bị thay đổi trong quá trình truyền |
+| **Cổng mặc định** | 80 | 443 |
+| **Bảo mật** | Thấp | Cao |
+| **SEO** | Thấp hơn | Cao hơn |
+| **Ví dụ URL** | http://www.example.com | https://www.example.com |
+| **Sử dụng** | Các trang web thông thường | Các trang web yêu cầu bảo mật cao (ví dụ: ngân hàng, thương mại điện tử) |
