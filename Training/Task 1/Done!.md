@@ -54,6 +54,35 @@
     - **Accept-Language:** cho biết tất cả các ngôn ngữ (tự nhiên) mà client có thể hiểu được.
 - **Request body** cho phép client gừi đến yêu cầu bổ sung cần server thực hiện như: tạo mới hoặc cập nhật dữ liệu mà không thể truyền trên Header Parameters.Thường được sử dụng trong các phương thức Post, Put, Patch.
 
-## HTTP Responses
+## HTTP Responses.
 - Tương tự **HTTP Requests**, **HTTP Responses** cũng là một **HTTP Message**.
+- **HTTP Responses** là kết quả mà server trả về khi ta gửi thành công 1 request.
+- Ta có cấu trúc 1 http response cơ bản như sau:
+
 ![image](https://github.com/user-attachments/assets/94a41f8d-3013-4928-b95f-5a03a71df3de)
+- Như ta thấy dòng đầu của `HTTP Response` là `Status Line` hay dòng trạng thái. Dòng này có cấu trúc như sau: **HTTP-version  - Status Code - Reason Phrase**.
+    - **HTTP-version:** Phiên bản HTTP. Bây giờ phiên bản thông dụng nhất là "HTTP/1.1".
+    - **Status Code:** Mã phản hồi tiêu chuẩn do máy chủ gửi về. Ví dụ: 200, 301, 500...
+    - **Reason Phrase:** Giải thích ngắn gọn về mã phản hồi do máy chủ gửi về.
+- Các dòng còn lại là các **Respone Header** bổ sung như:
+    - **Content-Type.**
+    - **Content-Length.**
+    - **Connection: Keep-Alive.**
+
+## HTTP Methods.
+- **HTTP Methods** là phương thức mà client gửi request đến server.
+- Có một số `HTTP Methods` như sau:
+
+| Phương thức | Mô tả                                                                                                    | An toàn | Bất biến | Hiển thị | Có thể cache |
+|------------|----------------------------------------------------------------------------------------------------------|---------|----------|----------|--------------|
+| GET        | Lấy tài nguyên                                                                                             | Có      | Có       | Có       | Có          |
+| HEAD       | Lấy các thông tin tiêu đề của tài nguyên                                                                    | Có      | Có       | Không     | Có          |
+| POST       | Tạo một tài nguyên mới                                                                                     | Không   | Không    | Không     | Không       |
+| PUT        | Cập nhật toàn bộ một tài nguyên                                                                             | Không   | Có       | Không     | Không       |
+| PATCH      | Cập nhật một phần của tài nguyên                                                                            | Không   | Không    | Không     | Không       |
+| DELETE     | Xóa một tài nguyên                                                                                       | Không   | Có       | Không     | Không       |
+| OPTIONS    | Mô tả các phương thức HTTP được hỗ trợ bởi tài nguyên                                                     | Có      | Có       | Không     | Có          |
+| CONNECT   | Thiết lập một kết nối tunnel đến server                                                                   | Không   | Không    | Không     | Không       |
+| TRACE     | Trả về đường dẫn mà request đã đi qua                                                                       | Có      | Có       | Có       | Không       |
+
+## URLs.
