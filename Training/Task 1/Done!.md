@@ -110,3 +110,15 @@
     - Xác định duy nhất: Mỗi tài nguyên trên Internet có một URL duy nhất.
     - Dễ nhớ: URL thường được thiết kế để dễ nhớ và liên quan đến nội dung của trang.
     - Truy cập trực tiếp: Bạn có thể nhập URL vào trình duyệt để truy cập trực tiếp đến tài nguyên.
+
+## HTTP Headers
+- **HTTP Headers** là những cặp tên-giá trị được gửi từ trình duyệt (hoặc bất kỳ client nào) đến máy chủ web để cung cấp thêm thông tin về yêu cầu và client. Chúng đóng vai trò quan trọng trong việc xác định cách máy chủ xử lý yêu cầu và gửi phản hồi phù hợp.
+- Một số Request Headers phổ biến như:
+    - **User-Agent:** Xác định trình duyệt hoặc ứng dụng đang gửi yêu cầu.
+    - **Accept:** Chỉ định các loại nội dung mà client có thể chấp nhận.
+    - **Content-Type**: Xác định loại nội dung của dữ liệu được gửi trong body của yêu cầu.
+    - **Authorization:** Chứa thông tin xác thực, thường là token hoặc thông tin đăng nhập.
+    - **Cookie:** Chứa các cookie được gửi từ máy chủ trong các yêu cầu trước đó.
+    - **Referer:** Chỉ ra trang web đã giới thiệu yêu cầu hiện tại.
+    - **If-Modified-Since:** Yêu cầu máy chủ chỉ gửi dữ liệu nếu nó đã được sửa đổi kể từ thời gian được chỉ định.
+    - **Cache-Control:** Cung cấp các hướng dẫn về việc cache dữ liệu.
