@@ -122,3 +122,9 @@
     - **Referer:** Chỉ ra trang web đã giới thiệu yêu cầu hiện tại.
     - **If-Modified-Since:** Yêu cầu máy chủ chỉ gửi dữ liệu nếu nó đã được sửa đổi kể từ thời gian được chỉ định.
     - **Cache-Control:** Cung cấp các hướng dẫn về việc cache dữ liệu.
+
+## Cookies
+- **Cookies** là những đoạn văn bản nhỏ được gửi từ một trang web đến trình duyệt của bạn và được lưu trữ trên thiết bị của bạn. Chúng giống như những "tấm thẻ nhớ" nhỏ, giúp các trang web nhớ thông tin về bạn và các hoạt động của bạn trên trang web đó.
+- Có hai loại **Cookies** chính:
+    - **First-party cookies:** Được tạo bởi trang web bạn đang truy cập.
+    - **Third-party cookies:** Được tạo bởi các trang web khác, như công cụ phân tích hoặc quảng cáo, được nhúng vào trang web bạn đang truy cập.
