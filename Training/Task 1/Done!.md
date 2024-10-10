@@ -38,10 +38,21 @@
 
 ## HTTP Requests.
 - **HTTP Requests** hiểu đơn giản như là yêu cầu của `client` gửi lên `server`. Khi đó `server` có nhiệm vụ tìm và xử lý các loại dữ liệu, thông tin, client mong muốn.
-- Một yêu cầu thường gồm 3 thông tin cơ bản sau:
-    - **HTTP Methods**
-    - **Path**
-    - **HTTP version**
-- Ở đây mình có ảnh mô tả request:
-![image](https://github.com/user-attachments/assets/6f3c9686-c8dd-4007-afd4-7e7825c7209f)
+- Ta có cấu trúc 1 http request cơ bản như sau:
 
+![image](https://github.com/user-attachments/assets/6f3c9686-c8dd-4007-afd4-7e7825c7209f)
+- **Requests line** có cấu trúc như sau: `Request Method - Request URI - HTTP-version`
+    - **Request Method:** là yêu cầu của đoạn message, ví dụ : GET, POST, HEAD, OPTIONS.....
+    - **Request URI:** là đường dẫn yêu cầu gửi đến. Ví dụ: /doc/test.html
+    - **HTTP-version:** phiên bản HTTP. Bây giờ phiên bản thông dụng nhất là "HTTP/1.1"
+
+- Các dòng còn lại từ dòng thứ 2 trở đi của **Request Message** là các **Request Header** bổ sung cho request đó. Ví dụ: Host, User-Agent, Cookie, Accept, Content-Type ...
+- **Request header** giúp client có thể gửi yêu cầu lên server. Mỗi yêu cầu sẽ kèm theo các thông số, và các thông số đó được gọi là Header Parameters. Trình duyệt và server sẽ dựa vào các thông số header này để trả dữ liệu và hiển thị dữ liệu cho phù hợp.Tương tự một HTTP Request, header sẽ phân biệt chữ thường và chữ hoa, theo sau đó là dấu “.” và một giá trị.Các thông số mà các bạn có thể gặp khá thường xuyên như:
+    - **User-Agent:** cho phép server xác định ứng dụng, hệ điều hành, nhà cung cấp và phiên bản.
+    - **Connection:** kiểm soát kết nối mạng. Nói cách khác, cho phép dừng hoặc tiếp tục kết nối sau khi server thực hiện xong yêu cầu.
+    - **Cache-Control:** chỉ định chính sách bộ nhớ đệm của trình duyệt.
+    - **Accept-Language:** cho biết tất cả các ngôn ngữ (tự nhiên) mà client có thể hiểu được.
+- **Request body** cho phép client gừi đến yêu cầu bổ sung cần server thực hiện như: tạo mới hoặc cập nhật dữ liệu mà không thể truyền trên Header Parameters.Thường được sử dụng trong các phương thức Post, Put, Patch.
+
+## HTTP Responses
+- Tương tự **HTTP Requests**, **HTTP Responses** cũng là một **HTTP Message**.
