@@ -157,3 +157,6 @@
 | **SEO** | Thấp hơn | Cao hơn |
 | **Ví dụ URL** | http://www.example.com | https://www.example.com |
 | **Sử dụng** | Các trang web thông thường | Các trang web yêu cầu bảo mật cao (ví dụ: ngân hàng, thương mại điện tử) |
+
+## HTTP Proxy.
+- **HTTP Proxy** là một máy chủ hoạt động như một **trung gian** giữa thiết bị của bạn (ví dụ: máy tính, điện thoại) và các máy chủ trên Internet. Khi bạn gửi một yêu cầu truy cập một trang web, thay vì trực tiếp kết nối đến máy chủ đó, yêu cầu của bạn sẽ được gửi đến máy chủ proxy trước. Máy chủ proxy sẽ xử lý yêu cầu này, sau đó mới chuyển tiếp đến máy chủ đích và trả kết quả về cho bạn.
