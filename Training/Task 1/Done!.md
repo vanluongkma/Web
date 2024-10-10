@@ -86,3 +86,17 @@
 | TRACE     | Trả về đường dẫn mà request đã đi qua                                                                       | Có      | Có       | Có       | Không       |
 
 ## URLs.
+
+- **URL** hay **Uniform Resource Locator** còn gọi là địa chỉ trang web, là một chuỗi ký tự dùng để xác định vị trí của một tài nguyên trên Internet. Tài nguyên này có thể là một trang web, một hình ảnh, một video, hoặc bất kỳ tập tin nào khác có thể được truy cập qua mạng.
+- Cấu trúc cơ bản của một URL:
+    - **Scheme:** Giao thức truy cập (http, https, ftp, mailto, ...).
+    - **Authority:** Phần xác định máy chủ (hostname, port).
+    - **Path:** Đường dẫn đến tài nguyên.
+    - **Query:** Tham số.
+    - **Fragment:** Mỏ neo.
+
+
+- Vai trò của URL:
+    - Xác định duy nhất: Mỗi tài nguyên trên Internet có một URL duy nhất.
+    - Dễ nhớ: URL thường được thiết kế để dễ nhớ và liên quan đến nội dung của trang.
+    - Truy cập trực tiếp: Bạn có thể nhập URL vào trình duyệt để truy cập trực tiếp đến tài nguyên.
