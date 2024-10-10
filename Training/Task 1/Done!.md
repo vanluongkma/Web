@@ -162,3 +162,20 @@
 - **HTTP Proxy** là một máy chủ hoạt động như một **trung gian** giữa thiết bị của bạn (ví dụ: máy tính, điện thoại) và các máy chủ trên Internet. Khi bạn gửi một yêu cầu truy cập một trang web, thay vì trực tiếp kết nối đến máy chủ đó, yêu cầu của bạn sẽ được gửi đến máy chủ proxy trước. Máy chủ proxy sẽ xử lý yêu cầu này, sau đó mới chuyển tiếp đến máy chủ đích và trả kết quả về cho bạn.
 
 ![image](https://github.com/user-attachments/assets/3768baca-3432-471e-a4f4-fec2d3e30435)
+- **HTTP Proxy** có thể:
+    - **Tăng tốc độ truy cập.**
+    - **Bảo mật.**
+    - **Kiểm soát truy cập.**
+    - **Bỏ chặn địa lý.**
+- Tồn tại một số **HTTP Proxy** sau:
+    - **Proxy trong suốt:** Người dùng không nhận biết được sự tồn tại của proxy.
+    - **Proxy ẩn danh:** Giấu địa chỉ IP thực của người dùng nhưng có thể bị phát hiện.
+    - **Proxy cao cấp:** Hoàn toàn ẩn danh, khó bị phát hiện
+
+## HTTP Authentication.
+- **HTTP Authentication** là một cơ chế bảo mật được sử dụng để **kiểm tra danh tính** của người dùng trước khi cho phép họ truy cập vào các tài nguyên trên một máy chủ web. Nói cách khác, nó giống như một **"cánh cửa"** ảo, chỉ mở khi bạn cung cấp đúng **"chìa khóa"**.
+- Một số phương thức xác thực HTTP phổ biến sau:
+    - **Basic Authentication:** Đây là phương thức đơn giản nhất, yêu cầu người dùng cung cấp **tên đăng nhập** và **mật khẩu** trong tiêu đề của yêu cầu HTTP. Tuy nhiên, thông tin này được mã hóa bằng Base64, không thực sự an toàn.
+    - **Digest Authentication:** Là một cải tiến so với **Basic Authentication**, sử dụng một **hàm băm** để bảo vệ mật khẩu tốt hơn.
+    - **Token-based Authentication:** Thay vì truyền mật khẩu trực tiếp, phương thức này sử dụng **token** để xác thực. **Token** thường được mã hóa và có thời hạn sử dụng.
+    - **OAuth:** Là một giao thức xác thực mở, cho phép người dùng cấp quyền truy cập vào các tài nguyên của họ trên một trang web thứ ba mà không cần chia sẻ mật khẩu.
