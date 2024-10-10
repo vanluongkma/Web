@@ -56,3 +56,4 @@
 
 ## HTTP Responses
 - Tương tự **HTTP Requests**, **HTTP Responses** cũng là một **HTTP Message**.
+![image](https://github.com/user-attachments/assets/94a41f8d-3013-4928-b95f-5a03a71df3de)
