@@ -94,6 +94,7 @@
     - **Path:** Đường dẫn đến tài nguyên.
     - **Query:** Tham số.
     - **Fragment:** Mỏ neo.
+![image](https://github.com/user-attachments/assets/790d5ee3-c87a-4e07-8817-47ab645155af)
 
 
 - Vai trò của URL:
