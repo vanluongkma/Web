@@ -12,4 +12,4 @@
     - `HTTP Proxies.`
     - **HTTP Authentication.**
 
-- Deadline: 11h59 15/10/2024.
+- **Deadline**: 11h59 15/10/2024.
