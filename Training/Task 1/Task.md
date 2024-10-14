@@ -1,4 +1,4 @@
-- Task 1 (08/10/2024) :
+## Task 1 (08/10/2024) :
   - Tìm hiểu:
     - **The HTTP Protocol.**
     - `HTTP Requests.`
