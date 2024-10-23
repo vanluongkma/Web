@@ -204,3 +204,5 @@ bandit12@bandit:/tmp/tmp.w5z9YoI2Yt$
 
 # LV14
 ![image](https://github.com/user-attachments/assets/150a07aa-693e-4cfc-8895-3dd44f05a277)
+
+![image](https://github.com/user-attachments/assets/43b80244-35ca-4e9e-bae1-d485b5614a37)
