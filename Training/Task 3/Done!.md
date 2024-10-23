@@ -87,3 +87,25 @@
 - strings | grep thoi.
 ![image](https://github.com/user-attachments/assets/2b747e4f-9307-4c5a-bdb2-74a3f92d7f90)
 > Pass: dfwvzFQi4mU0wfNbFOe9RoWskMLg7eEc
+
+| Lệnh    | Mô tả                                                                 | Ví dụ                                                                 |
+|---------|-----------------------------------------------------------------------|-----------------------------------------------------------------------|
+| `grep`  | Tìm kiếm một chuỗi hoặc mẫu trong tệp.                                | `grep "password" file.txt` tìm chuỗi "password" trong `file.txt`.      |
+| `sort`  | Sắp xếp các dòng trong tệp hoặc đầu vào.                              | `sort file.txt` sắp xếp các dòng trong `file.txt`.                    |
+| `uniq`  | Loại bỏ các dòng trùng lặp (thường sử dụng với `sort`).                | `uniq -u file.txt` hiển thị các dòng chỉ xuất hiện một lần.           |
+| `strings` | Hiển thị các chuỗi có thể đọc được trong tệp nhị phân.              | `strings binaryfile` hiển thị các chuỗi văn bản trong tệp nhị phân.   |
+| `base64`| Mã hóa hoặc giải mã dữ liệu theo định dạng base64.                     | `echo "hello" | base64` mã hóa "hello" thành base64.                  |
+| `tr`    | Dịch hoặc xóa các ký tự từ đầu vào tiêu chuẩn.                         | `echo "hello" | tr 'a-z' 'A-Z'` chuyển chữ thường thành chữ hoa.       |
+| `tar`   | Lưu trữ nhiều tệp vào một tệp nén (thường dùng với `gzip`).            | `tar -cvf archive.tar file1 file2` tạo tệp lưu trữ `archive.tar`.     |
+| `gzip`  | Nén tệp bằng thuật toán gzip.                                          | `gzip file.txt` nén tệp `file.txt` thành `file.txt.gz`.               |
+| `bzip2` | Nén tệp bằng thuật toán bzip2.                                         | `bzip2 file.txt` nén tệp `file.txt` thành `file.txt.bz2`.             |
+| `xxd`   | Chuyển đổi tệp thành định dạng hex hoặc ngược lại.                     | `xxd file.txt` hiển thị nội dung của `file.txt` dưới dạng hex.        |
+
+# LV9
+![image](https://github.com/user-attachments/assets/7ee60bab-36fe-4007-9f85-24dee77781b3)
+- Sort duy nhất là được.
+
+![image](https://github.com/user-attachments/assets/39d408df-5c7c-4c30-bb30-6908ab50dfc0)
+> Pass: 4CKMh1JI91bUIZZPXDqGanal4xvAg0JM
+
+# LV10
