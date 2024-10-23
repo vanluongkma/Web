@@ -109,3 +109,98 @@
 > Pass: 4CKMh1JI91bUIZZPXDqGanal4xvAg0JM
 
 # LV10
+![image](https://github.com/user-attachments/assets/1ab31849-07ad-43c8-8e56-4b791a3baee0)
+- grep =
+
+![image](https://github.com/user-attachments/assets/d8433efb-a379-44a1-9aa9-4a9a74e84393)
+> Pass: FGUW5ilLVJrxX9kMYMmlN4MgbpfMiqey
+
+# LV11
+![image](https://github.com/user-attachments/assets/192d3ea3-ba23-4c1a-a279-a392b148cea9)
+
+- Decode base64.
+
+![image](https://github.com/user-attachments/assets/c21bfa70-7478-4ac1-9199-32439a03fad3)
+> Pass: dtR173fZKb0RRsDFSGsg2RWnpNVj3qRr
+
+# LV12
+![image](https://github.com/user-attachments/assets/55ab388b-b19b-4cfc-a6eb-e55a49215417)
+
+- ROT 13.
+
+![image](https://github.com/user-attachments/assets/f87b5308-3dbc-4654-bcb7-fd494bb8a99e)
+> Pass: 7x16WNeHIi5YkIhWsfFIqoognUTyj9Q4
+
+- Decode bên ngoài cho dễ nha:)))) ([link](https://kt.gy/tools.html#conv/)).
+
+# LV13
+![image](https://github.com/user-attachments/assets/e1e453a8-9a4b-4e2a-94cc-6696f7d077eb)
+
+- Tạo file và di chuyển.
+
+![image](https://github.com/user-attachments/assets/9f9053b8-c45e-43ad-8230-cde74630b162)
+- Revert hexdump: ` xxd -r hexdump_data zip`
+- Unzip: `
+
+```bash
+bandit12@bandit:/tmp/tmp.w5z9YoI2Yt$ xxd -r hexdump_data zip
+bandit12@bandit:/tmp/tmp.w5z9YoI2Yt$ mv zip tar.gz
+bandit12@bandit:/tmp/tmp.w5z9YoI2Yt$ ls
+hexdump_data  tar.gz
+bandit12@bandit:/tmp/tmp.w5z9YoI2Yt$ gzip -d tar.gz
+bandit12@bandit:/tmp/tmp.w5z9YoI2Yt$ ls
+hexdump_data  tar
+bandit12@bandit:/tmp/tmp.w5z9YoI2Yt$ mv tar bzip2.bz2
+bandit12@bandit:/tmp/tmp.w5z9YoI2Yt$ lls
+Command 'lls' not found, but there are 16 similar ones.
+bandit12@bandit:/tmp/tmp.w5z9YoI2Yt$ ls
+bzip2.bz2  hexdump_data
+bandit12@bandit:/tmp/tmp.w5z9YoI2Yt$ bzip2 -d bzip2.bz2
+bandit12@bandit:/tmp/tmp.w5z9YoI2Yt$ ls
+bzip2  hexdump_data
+bandit12@bandit:/tmp/tmp.w5z9YoI2Yt$ mv bzip2 gzip.gz
+bandit12@bandit:/tmp/tmp.w5z9YoI2Yt$ gzip -d gzip.gz
+bandit12@bandit:/tmp/tmp.w5z9YoI2Yt$ ls
+gzip  hexdump_data
+bandit12@bandit:/tmp/tmp.w5z9YoI2Yt$ mv gzip tar.tar
+bandit12@bandit:/tmp/tmp.w5z9YoI2Yt$ tar -xf tar.tar
+bandit12@bandit:/tmp/tmp.w5z9YoI2Yt$ ls
+data5.bin  hexdump_data  tar.tar
+bandit12@bandit:/tmp/tmp.w5z9YoI2Yt$ tar -xf data5.bin
+bandit12@bandit:/tmp/tmp.w5z9YoI2Yt$ ls
+data5.bin  data6.bin  hexdump_data  tar.tar
+bandit12@bandit:/tmp/tmp.w5z9YoI2Yt$ tar -xf data6.bin
+bandit12@bandit:/tmp/tmp.w5z9YoI2Yt$ ls
+data5.bin  data6.bin  data8.bin  hexdump_data  tar.tar
+bandit12@bandit:/tmp/tmp.w5z9YoI2Yt$ tar -xf data7.bin
+tar: data7.bin: Cannot open: No such file or directory
+tar: Error is not recoverable: exiting now
+bandit12@bandit:/tmp/tmp.w5z9YoI2Yt$ tar -xf data8.bin
+bandit12@bandit:/tmp/tmp.w5z9YoI2Yt$ ls
+data5.bin  data6.bin  data8.bin  hexdump_data  tar.tar
+bandit12@bandit:/tmp/tmp.w5z9YoI2Yt$ tar -xf data6.bin
+bandit12@bandit:/tmp/tmp.w5z9YoI2Yt$ ls
+data5.bin  data6.bin  data8.bin  hexdump_data  tar.tar
+bandit12@bandit:/tmp/tmp.w5z9YoI2Yt$ tar -xf data6.bin.out
+tar: data6.bin.out: Cannot open: No such file or directory
+tar: Error is not recoverable: exiting now
+bandit12@bandit:/tmp/tmp.w5z9YoI2Yt$ bzip2 -d data6.bin
+bzip2: Can't guess original name for data6.bin -- using data6.bin.out
+bandit12@bandit:/tmp/tmp.w5z9YoI2Yt$ tar -xf data6.bin.out
+bandit12@bandit:/tmp/tmp.w5z9YoI2Yt$ xxd data8.bin
+00000000: 1f8b 0808 dfcd eb66 0203 6461 7461 392e  .......f..data9.
+00000010: 6269 6e00 0bc9 4855 2848 2c2e 2ecf 2f4a  bin...HU(H,.../J
+00000020: 51c8 2c56 70f3 374d 2977 2b4e 3648 4e4a  Q.,Vp.7M)w+N6HNJ
+00000030: f4cc f430 c8b0 f032 4a0d cd2e 362a 4b09  ...0...2J...6*K.
+00000040: 7129 77cc e302 003e de32 4131 0000 00    q)w....>.2A1...
+bandit12@bandit:/tmp/tmp.w5z9YoI2Yt$ mv data8.bin data8.gz
+bandit12@bandit:/tmp/tmp.w5z9YoI2Yt$ gzip -d data8.gz
+bandit12@bandit:/tmp/tmp.w5z9YoI2Yt$ cat data8
+The password is FO5dwFsc0cbaIiH0h8J2eUks2vdTDwAn
+bandit12@bandit:/tmp/tmp.w5z9YoI2Yt$
+```
+
+> Pass: FO5dwFsc0cbaIiH0h8J2eUks2vdTDwAn
+
+# LV14
+![image](https://github.com/user-attachments/assets/150a07aa-693e-4cfc-8895-3dd44f05a277)
