@@ -51,3 +51,39 @@
 ![image](https://github.com/user-attachments/assets/f530e1fd-dc47-44ed-934f-37ff4b37ef88)
 
 > Pass: 2WmrDFRmJIq3IPxneAaMGhap0pFhF3NJ
+
+# LV5
+
+![image](https://github.com/user-attachments/assets/c49a6ece-8c02-42a8-ac97-0e5490a0bdb0)
+- Ở đây mình có khá nhiều file. Do nội dung ít và mình biết pass như thế nào nên mình có thể `cat ./*` để cat toàn bộ file.
+
+![image](https://github.com/user-attachments/assets/9707cf6d-6bda-404e-addc-7bdfdfe85613)
+
+- Tuy nhiên ta có thể làm như sau:
+
+![image](https://github.com/user-attachments/assets/3edc2fb4-82b7-4001-9ea2-5b74f4cde0f0)
+
+> Pass: 4oQYVPkxZOOEOO5pTW81FB8j8lxXGUQw
+
+# LV6
+
+![image](https://github.com/user-attachments/assets/bf0643d9-0231-4392-9100-88d193e54ddd)
+
+- Ta tìm kiếm theo yêu cầu.
+
+![image](https://github.com/user-attachments/assets/723f5270-63df-4510-a530-cc54ab2f56a6)
+
+> Pass: HWasnPhtq9AVKe0dmk45nxy20cvUa6EG
+
+# LV7
+
+![image](https://github.com/user-attachments/assets/6edd6f39-315a-40b2-a153-a102d422132f)
+-Tương tự lv6.
+
+![image](https://github.com/user-attachments/assets/65fa6b8d-35fb-4535-924d-4fb207ef54ab)
+> Pass: morbNTDkSW6jIlUc0ymOdMaLnOlFVAaj
+# LV8
+![image](https://github.com/user-attachments/assets/35a3577a-1246-4010-b265-e8699d18bfcb)
+- strings | grep thoi.
+![image](https://github.com/user-attachments/assets/2b747e4f-9307-4c5a-bdb2-74a3f92d7f90)
+> Pass: dfwvzFQi4mU0wfNbFOe9RoWskMLg7eEc
