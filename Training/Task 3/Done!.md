@@ -233,8 +233,22 @@ bandit12@bandit:/tmp/tmp.w5z9YoI2Yt$
 > Pass: kSkvUpMQ7lBYyCM4GBPvCvT1BfWRy0Dx
 
 # LV17
+
 ![image](https://github.com/user-attachments/assets/7a58228a-861a-4c5e-be76-d5ed23fc1c94)
+
 - Sử dụng `nmap` để rò.
 > nmap -p- -A <host>
 
 ![image](https://github.com/user-attachments/assets/9f8f503c-cf08-41b3-a04d-2a73c15a4971)
+
+- Có 2 cổng xài ssl là `31518` và `31790`.
+- Thử từng cổng.
+> openssl s_client -ign_eof -connect localhost:31518
+> openssl s_client -ign_eof -connect localhost:31790
+
+![image](https://github.com/user-attachments/assets/ecb26fce-d3c9-446c-9d9d-785703bd8228)
+
+- Tương tự ta lại có privatekey.
+- Lưu lại để join lv kế.
+
+# LV18
