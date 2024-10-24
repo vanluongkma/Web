@@ -225,6 +225,7 @@ bandit12@bandit:/tmp/tmp.w5z9YoI2Yt$
 > Pass: 8xCjnmgoKbGLhHFAZlGE5Tmu4M2tKJQo
 
 # LV16
+
 ![image](https://github.com/user-attachments/assets/6a392d82-437d-47a6-bd2a-ccd917ca4e54)
 > openssl s_client -connect localhost:30001
 - Nhập pass lv15.
@@ -268,3 +269,129 @@ bandit17@bandit:~$ cat passwords.new | grep x2gLTTjFwMOhQ8oWNbMN362QKxfRqGlO
 x2gLTTjFwMOhQ8oWNbMN362QKxfRqGlO
 ```
 > Pass: x2gLTTjFwMOhQ8oWNbMN362QKxfRqGlO
+
+# LV19 
+- The password for the next level is stored in a file readme in the homedirectory. Unfortunately, someone has modified .bashrc to log you out when you log in with SSH.
+
+- Use command::
+> ssh bandit18@bandit.labs.overthewire.org -p 2220 ls 
+
+```bash
+caycon@CayCon:~$ ssh bandit18@bandit.labs.overthewire.org -p 2220 ls
+                         _                     _ _ _
+                        | |__   __ _ _ __   __| (_) |_
+                        | '_ \ / _` | '_ \ / _` | | __|
+                        | |_) | (_| | | | | (_| | | |_
+                        |_.__/ \__,_|_| |_|\__,_|_|\__|
+
+
+                      This is an OverTheWire game server.
+            More information on http://www.overthewire.org/wargames
+
+bandit18@bandit.labs.overthewire.org's password:
+readme
+caycon@CayCon:~$ ssh bandit18@bandit.labs.overthewire.org -p 2220 cat readme
+                         _                     _ _ _
+                        | |__   __ _ _ __   __| (_) |_
+                        | '_ \ / _` | '_ \ / _` | | __|
+                        | |_) | (_| | | | | (_| | | |_
+                        |_.__/ \__,_|_| |_|\__,_|_|\__|
+
+
+                      This is an OverTheWire game server.
+            More information on http://www.overthewire.org/wargames
+
+bandit18@bandit.labs.overthewire.org's password:
+cGWpMaKXVwDUNgPAVJbWYuGHVn9zl3j8
+```
+
+> Pass: cGWpMaKXVwDUNgPAVJbWYuGHVn9zl3j8
+
+# LV20
+- To gain access to the next level, you should use the setuid binary in the homedirectory. Execute it without arguments to find out how to use it. The password for this level can be found in the usual place (/etc/bandit_pass), after you have used the setuid binary.
+
+```bash
+bandit19@bandit:~$ ls -la
+total 36
+drwxr-xr-x  2 root     root      4096 Sep 19 07:08 .
+drwxr-xr-x 70 root     root      4096 Sep 19 07:09 ..
+-rwsr-x---  1 bandit20 bandit19 14880 Sep 19 07:08 bandit20-do
+-rw-r--r--  1 root     root       220 Mar 31  2024 .bash_logout
+-rw-r--r--  1 root     root      3771 Mar 31  2024 .bashrc
+-rw-r--r--  1 root     root       807 Mar 31  2024 .profile
+bandit19@bandit:~$ ./bandit20-do
+Run a command as another user.
+  Example: ./bandit20-do id
+bandit19@bandit:~$ ./bandit20-do ls /etc/bandit_pass
+bandit0   bandit11  bandit14  bandit17  bandit2   bandit22  bandit25  bandit28  bandit30  bandit33  bandit6  bandit9
+bandit1   bandit12  bandit15  bandit18  bandit20  bandit23  bandit26  bandit29  bandit31  bandit4   bandit7
+bandit10  bandit13  bandit16  bandit19  bandit21  bandit24  bandit27  bandit3   bandit32  bandit5   bandit8
+bandit19@bandit:~$ ./bandit20-do cat /etc/bandit_pass/bandit20
+0qXahG8ZjOVMN9Ghs7iOWsCfZyXOUbYO
+bandit19@bandit:~$
+```
+> Pass: 0qXahG8ZjOVMN9Ghs7iOWsCfZyXOUbYO
+
+# LV21 
+- There is a setuid binary in the homedirectory that does the following: it makes a connection to localhost on the port you specify as a commandline argument. It then reads a line of text from the connection and compares it to the password in the previous level (bandit20). If the password is correct, it will transmit the password for the next level (bandit21).
+```bash 
+bandit20@bandit:~$ echo -n '0qXahG8ZjOVMN9Ghs7iOWsCfZyXOUbYO' | nc -l -p 1234 &
+[1] 2222041
+bandit20@bandit:~$ ./suconnect 1234
+Read: 0qXahG8ZjOVMN9Ghs7iOWsCfZyXOUbYO
+Password matches, sending next password
+EeoULMCra2q0dSkYj561DX7s1CpBuOBt
+bandit20@bandit:~$
+```
+> Pass: EeoULMCra2q0dSkYj561DX7s1CpBuOBt
+
+# LV22
+- A program is running automatically at regular intervals from cron, the time-based job scheduler. Look in /etc/cron.d/ for the configuration and see what command is being executed.
+```bash 
+bandit21@bandit:~$ cat /usr/bin/cronjob_bandit22.sh
+#!/bin/bash
+chmod 644 /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv
+cat /etc/bandit_pass/bandit22 > /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv
+bandit21@bandit:~$ cat /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv
+tRae0UfB9v0UzbCdn9cY0gQnds9GF58Q
+bandit21@bandit:~$
+```
+> Pass: tRae0UfB9v0UzbCdn9cY0gQnds9GF58Q
+
+# LV23
+- A program is running automatically at regular intervals from cron, the time-based job scheduler. Look in /etc/cron.d/ for the configuration and see what command is being executed.
+```bash
+bandit22@bandit:~$ cat /usr/bin/cronjob_bandit23.sh
+#!/bin/bash
+
+myname=$(whoami)
+mytarget=$(echo I am user $myname | md5sum | cut -d ' ' -f 1)
+
+echo "Copying passwordfile /etc/bandit_pass/$myname to /tmp/$mytarget"
+
+cat /etc/bandit_pass/$myname > /tmp/$mytarget
+bandit22@bandit:~$ echo I am user bandit23 | md5sum | cut -d ' ' -f 1
+8ca319486bfbbc3663ea0fbe81326349
+bandit22@bandit:~$ cat /tmp/8ca319486bfbbc3663ea0fbe81326349
+0Zf11ioIjMVN551jX3CmStKLYqjk54Ga
+bandit22@bandit:~$
+```
+> Pass: 0Zf11ioIjMVN551jX3CmStKLYqjk54Ga
+
+# LV24
+- A program is running automatically at regular intervals from cron, the time-based job scheduler. Look in /etc/cron.d/ for the configuration and see what command is being executed.
+
+> Pass: gb8KRRCsshuZXI0tUuR6ypOFjiZbf3G8
+
+# LV25 
+- A daemon is listening on port 30002 and will give you the password for bandit25 if given the password for bandit24 and a secret numeric 4-digit pincode. There is no way to retrieve the pincode except by going through all of the 10000 combinations, called brute-forcing.
+- Run code: 
+```bash 
+for i in {0000..9999}; 
+do 
+	echo "gb8KRRCsshuZXI0tUuR6ypOFjiZbf3G8 $i"; 
+done | nc localhost 30002
+```
+
+![image](https://github.com/user-attachments/assets/74f04dd4-20bc-4644-85a0-5f269d2adac3)
+> Pass: iCi86ttT4KSNe1armKiwbQNmB3YJP3q4
