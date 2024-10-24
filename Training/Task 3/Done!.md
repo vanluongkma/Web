@@ -206,3 +206,35 @@ bandit12@bandit:/tmp/tmp.w5z9YoI2Yt$
 ![image](https://github.com/user-attachments/assets/150a07aa-693e-4cfc-8895-3dd44f05a277)
 
 ![image](https://github.com/user-attachments/assets/43b80244-35ca-4e9e-bae1-d485b5614a37)
+- Ở lv này ta nhận được 1 file private key của RSA. Lv này không có key hay key chính là file private đó.
+
+![image](https://github.com/user-attachments/assets/9edbd4fd-5113-41c0-9ae8-cd2dabe898ee)
+- Tuy nhiên ta cần thay đổi quyền thực thi bằng chmod.
+> chmod 700 sshkey.private
+
+- Sau đó ssh lại với ssh.private.
+- Join thành công lv 15.
+
+# LV15 
+![image](https://github.com/user-attachments/assets/44d60393-57ef-4dff-99ca-32e354c9f5d5)
+- Ở LV14 ta đã join được vào lv này.
+- Cat pass ở đường dẫn được cung cấp.
+
+![image](https://github.com/user-attachments/assets/0705c241-bd42-4a10-ba17-d0043199d67e)
+![image](https://github.com/user-attachments/assets/2eebf09a-fba3-49cc-8c65-8da20ed80b58)
+> Pass: 8xCjnmgoKbGLhHFAZlGE5Tmu4M2tKJQo
+
+# LV16
+![image](https://github.com/user-attachments/assets/6a392d82-437d-47a6-bd2a-ccd917ca4e54)
+> openssl s_client -connect localhost:30001
+- Nhập pass lv15.
+
+![image](https://github.com/user-attachments/assets/1aea2de4-8ed2-4753-b097-5360806f5e72)
+> Pass: kSkvUpMQ7lBYyCM4GBPvCvT1BfWRy0Dx
+
+# LV17
+![image](https://github.com/user-attachments/assets/7a58228a-861a-4c5e-be76-d5ed23fc1c94)
+- Sử dụng `nmap` để rò.
+> nmap -p- -A <host>
+
+![image](https://github.com/user-attachments/assets/9f8f503c-cf08-41b3-a04d-2a73c15a4971)
