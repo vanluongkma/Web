@@ -252,3 +252,19 @@ bandit12@bandit:/tmp/tmp.w5z9YoI2Yt$
 - Lưu lại để join lv kế.
 
 # LV18
+```bash
+bandit17@bandit:~$ ls
+passwords.new  passwords.old
+bandit17@bandit:~$ diff passwords.old passwords.new
+42c42
+< ktfgBvpMzWKR5ENj26IbLGSblgUG9CzB
+---
+> x2gLTTjFwMOhQ8oWNbMN362QKxfRqGlO
+bandit17@bandit:~$ sort passwords.old passwords.new | uniq -u
+ktfgBvpMzWKR5ENj26IbLGSblgUG9CzB
+x2gLTTjFwMOhQ8oWNbMN362QKxfRqGlO
+bandit17@bandit:~$ cat passwords.new | grep ktfgBvpMzWKR5ENj26IbLGSblgUG9CzB
+bandit17@bandit:~$ cat passwords.new | grep x2gLTTjFwMOhQ8oWNbMN362QKxfRqGlO
+x2gLTTjFwMOhQ8oWNbMN362QKxfRqGlO
+```
+> Pass: x2gLTTjFwMOhQ8oWNbMN362QKxfRqGlO
