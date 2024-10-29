@@ -7,7 +7,7 @@
     - Root-me:
         - HTTP - IP restriction bypass
         - HTTP - User-agent
-        - HTTP – Headers
+        - HTTP - Headers
         - HTTP – POST
 
 - **Deadline**: 11:59 31/10/2024
