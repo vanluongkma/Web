@@ -28,3 +28,29 @@
 ![image](https://github.com/user-attachments/assets/64a2c518-138f-460a-a958-c3b020f52dd3)
 - Ta lấy được pass. Submit thử thì đó là flag:)))
 
+### HTTP - User-agent
+- Truy cập link ta thấy: `Wrong user-agent: you are not the "admin" browser!`.
+- Giờ chỉ cần chỉnh request bằng cách thêm `user-agent: admin`.
+
+![image](https://github.com/user-attachments/assets/8ad0babb-d9f6-414e-b756-f234e490ef91)
+
+### HTTP - Headers
+- Chall này yêu cầu ta truy cập vào với quyền admin.
+- Mình có thử nhiều cách để bypass như:
+    - X-Admin: true
+    - X-Forwarded-Role: admin
+    - X-User-Role: admin
+    - Thêm sau role=admin, admin=true vào cookie.
+- Tuy nhiên lại không bypass được như mong đợi. Mình có thử thêm các cách sau:
+    - Header-RootMe-Admin: true
+    - Header-RootMe-Admin: 1
+    - Header-RootMe-Admin: admin
+- Và nhận được pass như mong muốn.
+
+![image](https://github.com/user-attachments/assets/7a59c1f6-eea0-4fe5-a0f7-18112dd4bcb0)
+
+### HTTP - POST
+- Check request mình thấy được thay đổi score:))
+- Thay đổi score ta có được flag.
+
+![image](https://github.com/user-attachments/assets/ed040964-1c1d-4e2a-8c29-ad860c7628cc)
