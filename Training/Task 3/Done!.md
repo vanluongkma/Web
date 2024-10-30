@@ -397,8 +397,16 @@ done | nc localhost 30002
 > Pass: iCi86ttT4KSNe1armKiwbQNmB3YJP3q4
 
 # LV26
-- Chall này làm như thường với ssh key thôi. Tuy nhiên khi ssh vào bandit26 hãy zoom terminal lên để vào được more từ đó vào vim với v.
+- Chall này làm như thường với ssh key thôi. Tuy nhiên khi ssh vào bandit26 hãy zoom terminal lên để vào được more từ đó vào vim với v. (Zoom bự tới khi nào vào được more thì thoi nha:)))).
 
 ![image](https://github.com/user-attachments/assets/f5efd9ee-dae3-4575-bcd3-00afc5ec01e6)
 
 > Pass: s0773xxkk0MXfdqOfPRVr9L3jJBUOgCZ
+
+# LV27
+- Y chang trên nha.
+> Pass: upsNCc7vzaRDx6oZC6GiR6ERwe1MowGB
+
+# LV28
+- git clone về là có pass nha.
+> Pass: Yz9IpL0sBcCeuG7m9uQFt8ZNpS4HZRcN
