@@ -409,4 +409,7 @@ done | nc localhost 30002
 
 # LV28
 - git clone về là có pass nha.
+
+![image](https://github.com/user-attachments/assets/877ace04-54f9-49a0-81c5-6dca83bcc37d)
+
 > Pass: Yz9IpL0sBcCeuG7m9uQFt8ZNpS4HZRcN
