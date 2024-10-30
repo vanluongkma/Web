@@ -413,3 +413,41 @@ done | nc localhost 30002
 ![image](https://github.com/user-attachments/assets/877ace04-54f9-49a0-81c5-6dca83bcc37d)
 
 > Pass: Yz9IpL0sBcCeuG7m9uQFt8ZNpS4HZRcN
+
+# LV29
+- 1 số lệnh liên quan đến git thôi nha.
+
+| Command                           | Description                                                   |
+|-----------------------------------|---------------------------------------------------------------|
+| `git clone <repo-url>`            | Clone một repository từ URL.                                  |
+| `git branch -a`                   | Hiển thị tất cả các nhánh (local và remote).                  |
+| `git branch <branch-name>`        | Tạo nhánh mới có tên `<branch-name>`.                         |
+| `git checkout <branch-name>`      | Chuyển sang nhánh `<branch-name>`.                            |
+| `git checkout -b <branch-name>`   | Tạo và chuyển ngay sang nhánh `<branch-name>`.                |
+| `git log`                         | Hiển thị lịch sử các commit.                                  |
+| `git log --oneline`               | Hiển thị log tóm tắt trên một dòng.                           |
+| `git log --all --oneline`         | Hiển thị tất cả các commit (bao gồm các commit đã bị ẩn).     |
+| `git show <commit-id>`            | Hiển thị chi tiết nội dung của commit `<commit-id>`.          |
+| `git status`                      | Kiểm tra trạng thái hiện tại của repository.                  |
+| `git add <file>`                  | Thêm `<file>` vào staging area.                               |
+| `git commit -m "message"`         | Tạo commit mới với thông điệp `"message"`.                    |
+| `git push origin <branch-name>`   | Đẩy nhánh `<branch-name>` lên remote repository.              |
+| `git pull origin <branch-name>`   | Lấy về và gộp nhánh `<branch-name>` từ remote repository.     |
+| `git tag`                         | Liệt kê các thẻ (tags) hiện có trong repository.              |
+| `git show <tag-name>`             | Hiển thị thông tin chi tiết về thẻ `<tag-name>`.              |
+| `git diff <branch1> <branch2>`    | So sánh sự khác biệt giữa 2 nhánh `<branch1>` và `<branch2>`. |
+| `git reset --hard <commit-id>`    | Khôi phục lại trạng thái repository tại commit `<commit-id>`. |
+| `git stash`                       | Lưu lại các thay đổi chưa commit vào stash.                   |
+| `git stash pop`                   | Phục hồi lại thay đổi từ stash.                               |
+| `git merge <branch-name>`         | Gộp nhánh `<branch-name>` vào nhánh hiện tại.                 |
+| `git fetch`                       | Tải tất cả các nhánh từ remote nhưng không merge.             |
+- git log xem lịch sử chỉnh sửa rồi. git show thôi nha.
+
+![image](https://github.com/user-attachments/assets/88cb9fbc-8fab-4eab-adc6-e25d23a5bc58)
+> Pass: 4pT1t5DENaYuqnqvadYs1oE4QLCdjmJ7
+
+# LV30
+- Chuyển nhánh qua dev rồi cat README.
+
+![image](https://github.com/user-attachments/assets/999f80b6-ee9c-4a50-bdaa-27b6296554e5)
+> Pass: qp30ex3VLz5MDG1n91YowTv4Q8l7CDZL
