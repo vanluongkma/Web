@@ -18,3 +18,13 @@
 - Với mỗi giá trị thì mình lại nhận được 1 chuỗi khác nhau. Và sau cùng khi value đặt giá trị 18 thì mình có được flag:))
 
 ![image](https://github.com/user-attachments/assets/0f82281f-8866-4a6f-91a6-335ec82a54b4)
+
+
+## Rootme
+### HTTP - IP restriction bypass
+- Với chall này ta cần đặt ip sao cho request ta gửi đi là từ ip của client trong server để có thể truy cập vào link mà không cần đăng nhập.
+- Mình có search gg và tìm được cách giả mạo ip bằng `X-Forwarded-For`, ở đây mình thử giả mạo ip thành `192.168.1.100` và gửi request đi.
+
+![image](https://github.com/user-attachments/assets/64a2c518-138f-460a-a958-c3b020f52dd3)
+- Ta lấy được pass. Submit thử thì đó là flag:)))
+
