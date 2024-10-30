@@ -451,3 +451,34 @@ done | nc localhost 30002
 
 ![image](https://github.com/user-attachments/assets/999f80b6-ee9c-4a50-bdaa-27b6296554e5)
 > Pass: qp30ex3VLz5MDG1n91YowTv4Q8l7CDZL
+
+# LV31
+- git tag.
+
+![image](https://github.com/user-attachments/assets/eaee7d40-7589-4ca7-904e-087fcf4c38c3)
+> Pass: fb5S2xb7bRyFmAvQYQGEqsbhVyJqhnDy
+
+# LV 32
+
+![image](https://github.com/user-attachments/assets/53c18a0d-3ebd-4835-a4f6-cd4905ffcfa6)
+> Pass: 3O9RfhqyAlVBEZpVb6LYStshZoqoSx5K
+
+# LV 33
+
+## Một số biến môi trường thông dụng
+
+| Tên biến | Mô tả |
+|----------|-------|
+| `TERM`   | Mô phỏng terminal hiện tại. |
+| `HOME`   | Đường dẫn đến thư mục chính của người dùng hiện tại. |
+| `LANG`   | Cài đặt ngôn ngữ hiện tại. |
+| `PATH`   | Danh sách các thư mục được tìm kiếm khi thực thi các lệnh. |
+| `PWD`    | Đường dẫn của thư mục làm việc hiện tại. |
+| `SHELL`  | Đường dẫn đến shell của người dùng hiện tại. |
+| `USER`   | Người dùng hiện đang đăng nhập. |
+
+![image](https://github.com/user-attachments/assets/cc0c44fb-e649-4153-8430-045a2eb9121b)
+> Pass: tQdtbs5D5i2vJwkO8mEyYEyTL8izoeJ0
+
+# LV34
+- **Done!!!!**
