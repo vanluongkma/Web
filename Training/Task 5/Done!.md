@@ -17,4 +17,9 @@
 
 
 ### File upload - Null byte
+- Như tên bài thì ta sửa đuôi mở rộng theo null byte.
+- Ở đây mình dùng `.php%00.png` send request và thu flag.
+
+![image](https://github.com/user-attachments/assets/3c01c9b1-2ed4-4eaa-bb1c-3f50caedb05c)
+
 ### File upload - ZIP
