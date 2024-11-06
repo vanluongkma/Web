@@ -23,3 +23,9 @@
 ![image](https://github.com/user-attachments/assets/3c01c9b1-2ed4-4eaa-bb1c-3f50caedb05c)
 
 ### File upload - ZIP
+- Đây mình up file nên thì sẽ được giải nén.
+- Mình thử nén lại xong upload. Tuy nhiên vẫn không thể mở.
+
+![image](https://github.com/user-attachments/assets/fb9e43d2-fbcb-4418-91ff-d8396b56742c)
+
+- Mình làm theo cách trên:)) và có được flag.
