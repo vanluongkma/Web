@@ -6,8 +6,15 @@
 ![image](https://github.com/user-attachments/assets/09ab1444-f736-47dc-baf8-0439b7f0c1f5)
 - Ta biết flag nằm ở file `.passwd`. Lúc này thì cần tìm được file và cat ra thôi.
 - Thử `../` từng thư mục rồi cat thử thôi.
+
 ![image](https://github.com/user-attachments/assets/b36da3d6-62fa-4703-ad53-252d4647c812)
 
 ### File upload - MIME type
+- Tương tự chall trên tuy nhiên đuôi mở rộng sẽ là `.png.php`
+- Sau khi by pass được thì ta tiếp tục check file `.passwd` nằm ở đâu và cat ra.
+
+![image](https://github.com/user-attachments/assets/09193d11-e34c-47bc-bde1-740c1dbd6fc4)
+
+
 ### File upload - Null byte
 ### File upload - ZIP
