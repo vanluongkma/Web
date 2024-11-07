@@ -1,3 +1,18 @@
+# File upload vulnerabilities
+- File upload vulnerabilities là khi máy chủ web cho phép người dùng tải tệp lên hệ thống tệp của nó mà không xác thực đầy đủ những thứ như tên, loại, nội dung hoặc kích thước của chúng. Việc không thực thi đúng cách các hạn chế đối với những hạn chế này có thể có nghĩa là ngay cả chức năng tải lên hình ảnh cơ bản cũng có thể được sử dụng để tải lên các tệp tùy ý và có khả năng gây nguy hiểm. Điều này thậm chí có thể bao gồm các tệp tập lệnh phía máy chủ cho phép thực thi mã từ xa.
+- Trong một số trường hợp, bản thân hành động tải tệp lên đã đủ gây ra thiệt hại. Các cuộc tấn công khác có thể liên quan đến yêu cầu HTTP tiếp theo đối với tệp, thường là để kích hoạt quá trình thực thi tệp của máy chủ.
+- File upload vulnerabilities thường phụ thuộc vào hai yếu tố chính:
+    - Web không xác thực về kích thước, loại, nội dung, v.v.
+    - Một số rule được đặt ra nhưng lại có thể bị by pass.
+- Việc có lỗ hổng file upload có thể để lại 1 số hậu quả nghiêm trọng sau:
+    - File gửi lên có thể thực thi từ đó bị lấy web shell.
+    - Ghi đè file llamf mất dữ liệu.
+    - Dos bằng cách load file dung lượng lớn.
+## File Upload General Methodology
+- Đây là phương pháp phổ biến là tìm cách bypass các cơ chế kiểm tra extension và mime-type nhằm tải lên file mã độc.
+### 
+
+
 ## Root-me
 ### File upload - Double extensions
 - Với chall này ta chỉ cần thay đổi đuôi mở rộng thành `.php.png` là có thể by pass được.
