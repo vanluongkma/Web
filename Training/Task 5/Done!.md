@@ -49,6 +49,19 @@
 
 ### Preventing file execution in user-accessible directories
 - Ngăn chặn việc thực thi file trong các thư mục người dùng có thể truy cập là biện pháp quan trọng nhằm bảo vệ ứng dụng khỏi việc kẻ tấn công lợi dụng các file độc hại để xâm nhập hệ thống. Khi thực hiện đúng cách, các biện pháp này sẽ giúp giảm thiểu rủi ro từ các lỗ hổng upload file và tránh các cuộc tấn công thông qua web shell hoặc các mã độc khác.
+
+| **Phương Pháp Ngăn Chặn Thực Thi File**       | **Mô Tả**                                                                            | **Ví Dụ**                                                                 |
+|-----------------------------------------------|--------------------------------------------------------------------------------------|---------------------------------------------------------------------------|
+| **Lưu trữ file ngoài thư mục gốc web**        | Đặt các file upload ở thư mục khác bên ngoài thư mục web để không thể truy cập trực tiếp từ trình duyệt. | Upload file vào thư mục `/uploads` nằm ngoài thư mục gốc `/var/www/html` |
+| **Cấu hình quyền thực thi trên thư mục**      | Ngăn chặn quyền thực thi trong thư mục upload để các file không thể được thực thi.  | Thiết lập quyền `chmod -x` cho thư mục upload để ngăn thực thi file      |
+| **Sử dụng `.htaccess` để chặn thực thi**      | Với server Apache, file `.htaccess` có thể được sử dụng để ngăn các file PHP hoặc script khác được thực thi trong thư mục. | Thêm `php_flag engine off` vào `.htaccess` trong thư mục upload           |
+| **Giới hạn loại file được phép upload**       | Chỉ cho phép các loại file không thể thực thi (như `.jpg`, `.png`, `.pdf`).         | Cho phép upload ảnh hoặc tài liệu nhưng không cho phép các script như `.php` |
+| **Thiết lập cấu hình web server an toàn**     | Cấu hình server để ngăn chặn thực thi file trong các thư mục cụ thể hoặc chỉ định các thư mục cho phép. | Sử dụng `nginx` với `location` để từ chối thực thi file trong thư mục upload |
+| **Sử dụng công cụ quét mã độc và xác thực file** | Kiểm tra file upload để phát hiện mã độc trước khi lưu trữ và ngăn thực thi mã độc. | Sử dụng các công cụ như ClamAV hoặc mod_security để quét file khi upload |
+| **Cấu hình máy chủ để trả về file dưới dạng dữ liệu** | Thiết lập server để xử lý các file upload dưới dạng dữ liệu tĩnh thay vì thực thi | Cấu hình Apache để tất cả file trong thư mục upload được xử lý như `text/plain` |
+| **Đổi tên file hoặc lưu trữ ở dạng mã hóa**   | Đổi tên file upload thành chuỗi ngẫu nhiên hoặc lưu trữ file dưới dạng mã hóa để giảm khả năng thực thi. | Đổi tên `shell.php` thành `a1b2c3.tmp` khi lưu trữ                         |
+| **Sử dụng sandbox hoặc container hóa**        | Cách ly thư mục upload trong một môi trường ảo để ngăn chặn mã độc lan truyền.     | Chạy thư mục upload trong Docker với các quyền hạn chế                     |
+
 ## Root-me
 ### File upload - Double extensions
 - Với chall này ta chỉ cần thay đổi đuôi mở rộng thành `.php.png` là có thể by pass được.
