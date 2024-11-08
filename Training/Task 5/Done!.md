@@ -11,6 +11,44 @@
 
 ## Exploiting 
 ### File uploads không bị hạn chế
+- Với trường hợp này thì web sẽ cho phép ta uploads file mà không kiểm tra kỹ nội dung, loại file hoặc quyền hạn. Từ đó ta có thể lợi dụng lỗ hổng này để tải lên các file độc hại, như web shell, nhằm truy cập từ xa vào máy chủ.
+- Với những trường hợp này ta cần xác định form upload file, thường thì sẽ có chỗ cho ta upload file như upload ảnh đại diện,...
+- Sử dụng **Burp Suite** ta có thể phân tích cũng như chỉnh sửa **request** cần thiết để by pass.
+- Một số cách by pass:
+    - **Bypass file extensions checks**
+    - **Bypass Content-Type, Magic Number, Compression & Resizing**
+    - **Other Tricks to check**
+    - **Special extension tricks**
+- Ngoài ra còn rất nhiều cách để by pass bạn có thể tham khảo thêm tại [đây](https://book.hacktricks.xyz/pentesting-web/file-upload)
+
+| Phương pháp                     | Mô tả                                                                                       | Ví dụ                                                    |
+|---------------------------------|---------------------------------------------------------------------------------------------|----------------------------------------------------------|
+| Bypass kiểm tra phần mở rộng     | Đổi tên file để trông giống như một file hợp lệ hoặc dùng phần mở rộng kép                 | `shell.php.jpg`, `shell.php;` hoặc `shell.php5`          |
+| Bypass Content-Type              | Sửa Content-Type trong request để trông giống như một loại file hợp lệ                      | Đổi `Content-Type: application/x-php` thành `image/jpeg` |
+| Bypass Magic Number              | Thay đổi mã magic number của file để qua mặt kiểm tra                                       | Thêm byte `\xFF\xD8\xFF\xE0` vào đầu file PHP            |
+| Bypass nén và thay đổi kích thước | Nén file hoặc chỉnh sửa kích thước để tránh các bộ lọc nội dung                             | Sử dụng file `.zip` hoặc `.tar.gz` chứa mã độc            |
+| Sử dụng phần mở rộng đặc biệt     | Dùng phần mở rộng ít phổ biến hoặc thêm dấu đặc biệt để qua mặt kiểm tra phần mở rộng         | `shell.phtml`, `shell.phar`, `shell.asp;.jpg`            |
+| Thay đổi tên file                 | Thêm dấu đặc biệt hoặc mã hóa một phần tên file                                             | `shell.php%00.jpg`, `shell.php\0.jpg`                    |
+| Sử dụng file nhúng script         | Nhúng mã script trong các định dạng file ít được kiểm tra kỹ                                | Tạo file SVG có chứa JavaScript                           |
+
+### Exploiting flawed validation of file uploads
+- Với trường hợp này thì web check không đầy đủ các yếu tố hoặc check không chính xác loại file được upload. Từ đó ta tải lên các file độc hại bằng nhiều phương pháp khác nhau, chẳng hạn như web shell hoặc các loại mã độc khác, giúp kẻ tấn công truy cập trái phép vào hệ thống.
+
+| **Phương Pháp Khai Thác Lỗi Xác Thực Upload**     | **Ví Dụ**                                                                 |
+|---------------------------------------------------|---------------------------------------------------------------------------|
+| **Thiếu kiểm tra phần mở rộng file**              | Upload `shell.php` thay vì file ảnh nếu hệ thống không giới hạn extension |
+| **Kiểm tra MIME-type không chính xác**            | Dùng Burp Suite đổi `Content-Type` của file PHP thành `image/jpeg`       |
+| **Chỉ kiểm tra tên file mà không kiểm tra nội dung** | Upload file PHP với tên `image.jpg` nhưng nội dung là mã PHP             |
+| **Sử dụng payload nhúng trong file ảnh**          | Nhúng mã PHP vào cuối file `.jpg`, như `<?php system($_GET['cmd']); ?>`  |
+| **Chỉ kiểm tra magic number không đầy đủ**        | Thay đổi magic number của file PHP thành JPEG để vượt qua kiểm tra       |
+| **Quá trình kiểm tra không đầy đủ cho file nén**  | Upload `shell.zip` chứa file `.php`, sau đó giải nén trên server         |
+| **Sử dụng phần mở rộng kép hoặc đặc biệt**        | Đổi tên `shell.php` thành `shell.php.jpg` hoặc dùng `.php5`, `.phtml`    |
+| **Không có giới hạn kích thước file hợp lệ**      | Upload file lớn để tạo **DoS** hoặc nhúng mã độc trong file lớn           |
+| **Thiếu kiểm tra cho file kịch bản khác**         | Upload shell với phần mở rộng `.jsp`, `.asp` nếu server hỗ trợ           |
+| **Chỉ lọc ký tự một phần tên file**               | Upload `shell;.php` để qua mặt bộ lọc nếu server chỉ kiểm tra `.php`     |
+
+### Preventing file execution in user-accessible directories
+- Ngăn chặn việc thực thi file trong các thư mục người dùng có thể truy cập là biện pháp quan trọng nhằm bảo vệ ứng dụng khỏi việc kẻ tấn công lợi dụng các file độc hại để xâm nhập hệ thống. Khi thực hiện đúng cách, các biện pháp này sẽ giúp giảm thiểu rủi ro từ các lỗ hổng upload file và tránh các cuộc tấn công thông qua web shell hoặc các mã độc khác.
 ## Root-me
 ### File upload - Double extensions
 - Với chall này ta chỉ cần thay đổi đuôi mở rộng thành `.php.png` là có thể by pass được.
