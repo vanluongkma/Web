@@ -8,11 +8,9 @@
     - File gửi lên có thể thực thi từ đó bị lấy web shell.
     - Ghi đè file llamf mất dữ liệu.
     - Dos bằng cách load file dung lượng lớn.
-## File Upload General Methodology
-- Đây là phương pháp phổ biến là tìm cách bypass các cơ chế kiểm tra extension và mime-type nhằm tải lên file mã độc.
-### 
 
-
+## Exploiting 
+### File uploads không bị hạn chế
 ## Root-me
 ### File upload - Double extensions
 - Với chall này ta chỉ cần thay đổi đuôi mở rộng thành `.php.png` là có thể by pass được.
