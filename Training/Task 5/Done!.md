@@ -91,7 +91,78 @@ Content-Type: image/jpeg
 
 ## Preventing file execution in user-accessible directories (Ngăn chặn thực thi file trong thư mục người dùng có thể truy cập)
 
-- web ngăn không cho các file tải lên thực thi trong thư mục người dùng có thể truy cập được bằng cách giới hạn MIME types được xử lý. Tuy nhiên, nếu cấu hình không cẩn thận, một số file có thể vẫn được thực thi dù không nằm trong thư mục có cấu hình bảo mật.
+- Web ngăn không cho các file tải lên thực thi trong thư mục người dùng có thể truy cập được bằng cách giới hạn MIME types được xử lý. Tuy nhiên, nếu cấu hình không cẩn thận, một số file có thể vẫn được thực thi dù không nằm trong thư mục có cấu hình bảo mật.
+
+## Cách thức bypass
+- Kẻ tấn công có thể tải file lên thư mục không được bảo vệ chặt chẽ hoặc có thể thực thi file ở một thư mục mà server không kiểm tra kỹ.
+
+## Insufficient blacklisting of dangerous file types (Danh sách chặn file nguy hiểm không đủ mạnh)
+- Một cách phổ biến để ngăn chặn việc upload các file độc hại là blacklist các đuôi file nguy hiểm như .php, .exe, .bat. Tuy nhiên, việc blacklist file extension là phương pháp không hiệu quả vì có thể có nhiều đuôi file khác có thể thực thi mã (ví dụ .php5, .shtml).
+
+- Cách thức bypass:
+- Kẻ tấn công có thể sử dụng các đuôi file ít phổ biến hoặc thay đổi đuôi file để vượt qua danh sách chặn. Ví dụ:
+
+- Thay đổi .php thành .php5, .phtml hoặc .shtml để file vẫn có thể thực thi.
+- Sử dụng các kỹ thuật như exploit.php.jpg hoặc exploit.php; để file vẫn được upload và thực thi.
+- Ví dụ cụ thể:
+- Giả sử server chặn .php nhưng không chặn .php5, bạn có thể tải lên file exploit.php5 chứa mã độc.
+
+`exploit.php5`
+```php
+<?php system($_GET['cmd']); ?>
+```
+
+## Overriding the server configuration (Ghi đè cấu hình của server)
+- Server thường không thực thi các file nếu chưa được cấu hình để làm như vậy. Ví dụ, với Apache, file PHP chỉ được thực thi khi có các chỉ thị như AddType application/x-httpd-php .php trong tệp cấu hình apache2.conf. Tuy nhiên, kẻ tấn công có thể tải lên các file cấu hình như .htaccess hoặc web.config để ghi đè cấu hình của server.
+
+- Cách thức bypass:
+- Kẻ tấn công có thể tải lên file .htaccess chứa các chỉ thị để server xử lý file PHP dù server không được cấu hình để thực thi PHP trong thư mục đó.
+
+- Ví dụ cụ thể:
+- Giả sử bạn tải lên file .htaccess vào thư mục /uploads/ có nội dung sau:
+```htaccess
+AddType application/x-httpd-php .php
+```
+- Điều này có thể khiến server bắt đầu xử lý file PHP trong thư mục /uploads/ dù nó không được cấu hình để làm vậy.
+
+## Obfuscating file extensions (Làm mờ đuôi file)
+
+- Một số server kiểm tra đuôi file để xác định loại MIME và có thể chặn các đuôi file nguy hiểm như .php. Tuy nhiên, kẻ tấn công có thể làm mờ đuôi file để vượt qua kiểm tra này.
+
+- Cách thức bypass:
+- Kẻ tấn công có thể thực hiện các kỹ thuật làm mờ (obfuscation) như:
+
+- Sử dụng nhiều đuôi (ví dụ exploit.php.jpg)
+- Thêm ký tự trắng (ví dụ exploit.php.)
+- Mã hóa URL cho dấu chấm hoặc các ký tự đặc biệt (ví dụ %2E thay cho dấu chấm).
+- Ví dụ cụ thể:
+- Giả sử server chỉ chấp nhận file .jpg, nhưng bạn có thể tải lên file exploit.php.jpg. Nếu server không kiểm tra kỹ, nó sẽ xử lý file này như một ảnh nhưng thực tế nó là PHP script.
+
+`exploit.php.jpg`
+```php
+<?php system($_GET['cmd']); ?>
+```
+
+## Flawed validation of the file's contents (Xác thực nội dung file không chính xác)
+- Giải thích:
+- Các server bảo mật tốt sẽ kiểm tra nội dung file để đảm bảo rằng loại MIME thực sự khớp với nội dung của file. Ví dụ, nếu bạn tải lên một file ảnh, server có thể kiểm tra xem file đó có phải thực sự là ảnh hay không, thông qua các byte đặc trưng của định dạng ảnh (ví dụ JPEG bắt đầu bằng FF D8 FF).
+
+- Cách thức bypass:
+- Kẻ tấn công có thể tạo ra các file polyglot, nghĩa là file có thể có nhiều định dạng, chẳng hạn như một file ảnh JPEG chứa mã độc trong metadata. Công cụ như ExifTool có thể được sử dụng để tạo các file như vậy.
+
+- Ví dụ cụ thể:
+- Kẻ tấn công tạo ra một file JPEG chứa mã PHP trong phần metadata. File này sẽ bắt đầu bằng FF D8 FF (byte đặc trưng của JPEG), nhưng khi đọc metadata, nó chứa mã PHP.
+
+## Exploiting file upload race conditions (Khai thác điều kiện tranh chấp trong upload file)
+- Giải thích:
+- Trong một số hệ thống, file có thể được tải lên thư mục tạm thời và sau đó được kiểm tra trước khi chuyển đến thư mục chính. Tuy nhiên, nếu không xử lý đúng, kẻ tấn công có thể lợi dụng khoảng thời gian ngắn (race condition) khi file đang được kiểm tra để thực thi mã.
+
+- Cách thức bypass:
+- Kẻ tấn công có thể tận dụng khoảng thời gian rất ngắn (khoảng vài mili giây) giữa việc upload file và kiểm tra để thực thi file trước khi nó bị phát hiện.
+
+- Ví dụ cụ thể:
+- Kẻ tấn công tải lên một file PHP vào thư mục tạm thời, nhưng trong khoảng thời gian ngắn trước khi file bị kiểm tra, kẻ tấn công có thể truy cập và thực thi file này.
+
 ## Root-me
 ### File upload - Double extensions
 - Với chall này ta chỉ cần thay đổi đuôi mở rộng thành `.php.png` là có thể by pass được.
