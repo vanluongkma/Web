@@ -98,5 +98,7 @@ lệnh Apache sau:
     AddType application/x-httpd-php .l33t
     ```
     - Sau đó ta là tương tự như các demo trên tuy nhiên hãy gửi file `.l33t` thay vì `.php`
+  
+![image](https://github.com/user-attachments/assets/4911cc95-be1a-48c4-aed8-715288bf6ec7)
 
 
