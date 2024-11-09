@@ -55,6 +55,6 @@
 | **Thiếu kiểm tra cho file kịch bản khác**             | Hệ thống chỉ kiểm tra loại file PHP mà bỏ qua các loại file script khác             | Upload shell với phần mở rộng `.jsp` hoặc `.asp` nếu hệ thống hỗ trợ script này  |
 | **Chỉ lọc ký tự một phần tên file**                   | Hệ thống chỉ kiểm tra phần đuôi mở rộng `php` nhưng không loại bỏ ký tự đặc biệt    | Upload `shell;.php` để qua mặt bộ lọc nếu server chỉ kiểm tra `.php`            |
 
-- Bạn có thể tham khảo chi tiết hơn ở [link sau](https://book.hacktricks.xyz/pentesting-web/file-upload)
+- Bạn có thể tham khảo chi tiết hơn ở [đây](https://book.hacktricks.xyz/pentesting-web/file-upload)
 #### Demo
 - Ở [đây](https://portswigger.net/web-security/file-upload/lab-file-upload-web-shell-upload-via-content-type-restriction-bypass) mình có 1 challenge demo.
