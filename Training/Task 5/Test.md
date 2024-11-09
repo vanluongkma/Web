@@ -62,3 +62,41 @@
 - Mình lại thử upload file png thì ok web nhận. Sau đó mình sửa request. Gửi 1 file .php nhưng MIME type lại là `image/png`.
 
 ![image](https://github.com/user-attachments/assets/17b8d3dd-eae2-4862-944c-e1d03cfffa17)
+## Overriding the server configuration
+- **Overriding the server configuration** hay ghi đè cấu hình máy chủ là một phương pháp hacker dùng để thay đổi cách máy chủ xử lý các file hoặc yêu cầu từ người dùng, nhằm thực thi mã độc hoặc thực hiện các hành vi trái phép. Trong bối cảnh bảo mật, phương pháp này thường liên quan đến việc tải lên các file cấu hình có khả năng điều chỉnh cách máy chủ xử lý một số loại file hoặc yêu cầu cụ thể. Khi hacker có thể ghi đè cấu hình máy chủ, họ có thể kiểm soát cách thức thực thi file và mở ra nhiều cách khai thác khác nhau.
+- Lấy ví dụ như một số máy chủ `Apache` hoặc `Nginx` cho phép sử dụng file cấu hình riêng ở cấp thư mục. Nếu máy chủ cho phép tải lên file cấu hình (ví dụ: '.htaccess' trên `Apache`), hacker có thể tận dụng điều này để ghi đè cấu hình và mở các lỗ hổng bảo mật.
+- Cụ thể hơn với:
+    - **Apache .htaccess File:**
+        - Trong Apache, file .htaccess có thể ghi đè nhiều cài đặt máy chủ, bao gồm các quy tắc xử lý file. Hacker có thể tải lên file .htaccess với các cấu hình như sau để thay đổi cách xử lý file:
+        > SetHandler application/x-httpd-php
+        - Dòng lệnh trên yêu cầu Apache xử lý các file trong thư mục đó như file PHP, dù chúng có đuôi mở rộng là gì. Điều này cho phép hacker chạy mã PHP trong các file có đuôi khác (như .jpg hoặc .txt).
+    - **Nginx Configuration:**
+        - Nginx không hỗ trợ ghi đè cấu hình ở cấp thư mục tương tự .htaccess, nhưng nếu hacker có quyền truy cập vào file cấu hình của Nginx, họ có thể thay đổi cách thức xử lý file PHP, thiết lập quyền truy cập thư mục, hoặc điều chỉnh proxy để chuyển tiếp yêu cầu đến máy chủ khác.
+    - **Override MIME Type hoặc file upload:**
+        - Thay đổi MIME type để chỉ định kiểu file được xử lý theo cách khác, cho phép chạy mã tùy chỉnh. Ví dụ, hacker có thể cấu hình để xử lý file .jpg như một file PHP nếu máy chủ không giới hạn
+
+### Demo
+- Ở [đây](https://portswigger.net/web-security/file-upload/lab-file-upload-web-shell-upload-via-extension-blacklist-bypass) mình có 1 challenge demo.
+- Với chall này ta sẽ nói về kỹ thuật **path traversal**
+- **Path traversal** là một lỗ hổng bảo mật phổ biến trong các ứng dụng web. Kỹ thuật này cho phép kẻ tấn công truy cập các file hoặc thư mục trên máy chủ nằm ngoài phạm vi mà ứng dụng dự kiến, thường là bằng cách khai thác các điểm yếu trong việc kiểm tra và xử lý đường dẫn.
+- Cách hoạt động của Path Traversal
+    -Path traversal xảy ra khi ứng dụng không lọc hoặc không xử lý đúng dữ liệu đầu vào là đường dẫn file. Bằng cách truyền các ký tự đặc biệt như ../ (chỉ đường dẫn thư mục cha), kẻ tấn công có thể thoát khỏi thư mục hiện tại và truy cập vào các thư mục cấp cao hơn trong hệ thống file.
+- Ví dụ, nếu URL chứa đường dẫn file như sau:
+```bash
+http://example.com/view?file=images/photo.jpg
+```
+- Nếu ứng dụng không kiểm tra chặt chẽ tham số file, kẻ tấn công có thể thử sử dụng ../ để truy cập các file hệ thống nhạy cảm, chẳng hạn như:
+```bash
+http://example.com/view?file=../../../../etc/passwd
+```
+
+- Quay lại chall. Ở đây ta sẽ ánh xạ `.l33t` thành `application/x-httpd-php` hay `.php` bằng cách dùng `.htaccess`. Tuy đây không phải **path traversal** mà là **overriding server configuration**.
+- Ta thực hiện như sau:
+    - Đâu tiên ta gửi 1 request với file `.htaccess` có `Content-Type` là `text/plain` kèm theo đó là
+lệnh Apache sau:
+    ```bash
+    AddType application/x-httpd-php .l33t
+    ```
+    - Sau đó ta là tương tự như các demo trên tuy nhiên hãy gửi file `.l33t` thay vì `.php`
+
+
