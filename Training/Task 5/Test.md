@@ -35,3 +35,26 @@
 ```
 
 ![image](https://github.com/user-attachments/assets/48398b45-dec5-4bab-afaa-bc0fff0ef635)
+## Exploiting flawed validation of file uploads
+- Với trường hợp này thì web check không đầy đủ các yếu tố hoặc check không chính xác loại file được upload. Từ đó ta có thể by pass để tải lên các file độc hại bằng nhiều phương pháp khác nhau, chẳng hạn như web shell hoặc các loại mã độc khác, giúp kẻ tấn công truy cập trái phép vào hệ thống.
+### Flawed file type validation
+- Có kha khá lỗ hổng về trường hợp này chả hạn như: web chỉ kiểm tra phần mở rộng file, kiểm tra MIME type thiếu chính xác,...
+- Ở đây mình sẽ đề cập đến một số cách by pass với trường hợp này:
+
+| **Phương Pháp Khai Thác Lỗi Xác Thực Upload**         | **Mô Tả Chi Tiết**                                                                  | **Ví Dụ**                                                                       |
+|-------------------------------------------------------|-------------------------------------------------------------------------------------|----------------------------------------------------------------------------------|
+| **Thiếu kiểm tra phần mở rộng file**                  | Hệ thống không giới hạn hoặc không kiểm tra đúng đuôi file (extension)              | Upload `shell.php` thay vì file ảnh nếu hệ thống không giới hạn extension       |
+| **Kiểm tra MIME-type không chính xác**                | Hệ thống dựa vào MIME type để xác định loại file nhưng không kiểm tra nội dung thực | Dùng Burp Suite đổi `Content-Type` của file PHP thành `image/jpeg`              |
+| **Chỉ kiểm tra tên file mà không kiểm tra nội dung**  | Hệ thống chỉ kiểm tra tên file mà bỏ qua việc kiểm tra nội dung thực của file       | Upload file PHP với tên `image.jpg` nhưng nội dung là mã PHP                     |
+| **Sử dụng payload nhúng trong file ảnh**              | Chèn mã độc vào file ảnh như mã PHP vào cuối file `.jpg` để đánh lừa hệ thống       | Nhúng mã PHP như `<?php system($_GET['cmd']); ?>` vào cuối file `.jpg`          |
+| **Sử dụng Null Byte Injection**                       | Chèn ký tự Null Byte (`%00`) vào giữa tên file để bỏ qua kiểm tra extension         | Upload `shell.php%00.jpg` để hệ thống nhận diện là `.jpg` nhưng thực thi `.php` |
+| **Chỉ kiểm tra magic number không đầy đủ**            | Hệ thống chỉ kiểm tra magic number mà không xác thực toàn bộ file                   | Thay đổi magic number của file PHP thành JPEG để vượt qua kiểm tra              |
+| **Quá trình kiểm tra không đầy đủ cho file nén**      | Hệ thống cho phép tải lên file nén mà không kiểm tra file được giải nén            | Upload `shell.zip` chứa file `.php`, sau đó giải nén trên server                |
+| **Sử dụng phần mở rộng kép hoặc đặc biệt**            | Sử dụng tên file với hai đuôi hoặc đuôi đặc biệt mà máy chủ có thể nhận diện thực thi | Đổi tên `shell.php` thành `shell.php.jpg` hoặc sử dụng `.php5`, `.phtml`        |
+| **Không có giới hạn kích thước file hợp lệ**          | Hệ thống không giới hạn kích thước file, có thể tải lên file lớn để tạo DoS         | Upload file lớn để tạo DoS hoặc nhúng mã độc vào file lớn                        |
+| **Thiếu kiểm tra cho file kịch bản khác**             | Hệ thống chỉ kiểm tra loại file PHP mà bỏ qua các loại file script khác             | Upload shell với phần mở rộng `.jsp` hoặc `.asp` nếu hệ thống hỗ trợ script này  |
+| **Chỉ lọc ký tự một phần tên file**                   | Hệ thống chỉ kiểm tra phần đuôi mở rộng `php` nhưng không loại bỏ ký tự đặc biệt    | Upload `shell;.php` để qua mặt bộ lọc nếu server chỉ kiểm tra `.php`            |
+
+- Bạn có thể tham khảo chi tiết hơn ở [link sau](https://book.hacktricks.xyz/pentesting-web/file-upload)
+#### Demo
+- Ở [đây](https://portswigger.net/web-security/file-upload/lab-file-upload-web-shell-upload-via-content-type-restriction-bypass) mình có 1 challenge demo.
