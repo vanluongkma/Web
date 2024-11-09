@@ -58,3 +58,7 @@
 - Bạn có thể tham khảo chi tiết hơn ở [đây](https://book.hacktricks.xyz/pentesting-web/file-upload)
 #### Demo
 - Ở [đây](https://portswigger.net/web-security/file-upload/lab-file-upload-web-shell-upload-via-content-type-restriction-bypass) mình có 1 challenge demo.
+- Với chall này thì ban đầu mình có thử upload file php. Tuy nhiên web lại chặn không cho phép mình upload.
+- Mình lại thử upload file png thì ok web nhận. Sau đó mình sửa request. Gửi 1 file .php nhưng MIME type lại là `image/png`.
+
+![image](https://github.com/user-attachments/assets/17b8d3dd-eae2-4862-944c-e1d03cfffa17)
