@@ -76,7 +76,7 @@
         - Thay đổi MIME type để chỉ định kiểu file được xử lý theo cách khác, cho phép chạy mã tùy chỉnh. Ví dụ, hacker có thể cấu hình để xử lý file .jpg như một file PHP nếu máy chủ không giới hạn
 
 ### Demo
-- Ở [đây](https://portswigger.net/web-security/file-upload/lab-file-upload-web-shell-upload-via-extension-blacklist-bypass) mình có 1 challenge demo.
+- Ở [đây](https://portswigger.net/web-security/file-upload/lab-file-upload-web-shell-upload-via-path-traversal) mình có 1 challenge demo.
 - Với chall này ta sẽ nói về kỹ thuật **path traversal**
 - **Path traversal** là một lỗ hổng bảo mật phổ biến trong các ứng dụng web. Kỹ thuật này cho phép kẻ tấn công truy cập các file hoặc thư mục trên máy chủ nằm ngoài phạm vi mà ứng dụng dự kiến, thường là bằng cách khai thác các điểm yếu trong việc kiểm tra và xử lý đường dẫn.
 - Cách hoạt động của Path Traversal
@@ -89,7 +89,14 @@ http://example.com/view?file=images/photo.jpg
 ```bash
 http://example.com/view?file=../../../../etc/passwd
 ```
+- Với chall này ta có thể upload được file php tùy thích.
+- Tuy nhiên server lại trả lại cho ta code dưới dạng text:)))
+- Ta sẽ thử gửi file vào 1 thư mục khác sau bằng kỹ thuật path traversal.
 
+
+
+### Demo
+- Ở [đây](https://portswigger.net/web-security/file-upload/lab-file-upload-web-shell-upload-via-extension-blacklist-bypass) mình có 1 challenge demo.
 - Quay lại chall. Ở đây ta sẽ ánh xạ `.l33t` thành `application/x-httpd-php` hay `.php` bằng cách dùng `.htaccess`. Tuy đây không phải **path traversal** mà là **overriding server configuration**.
 - Ta thực hiện như sau:
     - Đâu tiên ta gửi 1 request với file `.htaccess` có `Content-Type` là `text/plain` kèm theo đó là
