@@ -62,7 +62,32 @@
 - Mình lại thử upload file png thì ok web nhận. Sau đó mình sửa request. Gửi 1 file .php nhưng MIME type lại là `image/png`.
 
 ![image](https://github.com/user-attachments/assets/17b8d3dd-eae2-4862-944c-e1d03cfffa17)
-## Overriding the server configuration
+### Preventing file execution in user-accessible directories
+- Tại đây ta sẽ tìm hiểu về kỹ thuật **path traversal**.
+- **Path traversal** là một lỗ hổng bảo mật phổ biến trong các ứng dụng web. Kỹ thuật này cho phép kẻ tấn công truy cập các file hoặc thư mục trên máy chủ nằm ngoài phạm vi mà ứng dụng dự kiến, thường là bằng cách khai thác các điểm yếu trong việc kiểm tra và xử lý đường dẫn.
+- Cách hoạt động của Path Traversal
+    -Path traversal xảy ra khi ứng dụng không lọc hoặc không xử lý đúng dữ liệu đầu vào là đường dẫn file. Bằng cách truyền các ký tự đặc biệt như ../ (chỉ đường dẫn thư mục cha), kẻ tấn công có thể thoát khỏi thư mục hiện tại và truy cập vào các thư mục cấp cao hơn trong hệ thống file.
+- Ví dụ, nếu URL chứa đường dẫn file như sau:
+```bash
+http://example.com/view?file=images/photo.jpg
+```
+- Nếu ứng dụng không kiểm tra chặt chẽ tham số file, kẻ tấn công có thể thử sử dụng ../ để truy cập các file hệ thống nhạy cảm, chẳng hạn như:
+```bash
+http://example.com/view?file=../../../../etc/passwd
+```
+
+#### Demo
+- Ở [đây](https://portswigger.net/web-security/file-upload/lab-file-upload-web-shell-upload-via-path-traversal) mình có 1 challenge demo.
+- Với chall này ta có thể upload được file php tùy thích.
+- Tuy nhiên server lại trả lại cho ta code dưới dạng text:)))
+- Ta sẽ thử gửi file vào 1 thư mục khác sau bằng kỹ thuật path traversal.
+- Xem chi tiết hơn tại [đây](https://owasp.org/www-community/attacks/Path_Traversal) nha.
+![image](https://github.com/user-attachments/assets/8addad33-aeb1-414e-aff5-99cb7b1a00ee)
+
+### Insufficient blacklisting of dangerous file types
+- **Insufficient blacklisting of dangerous file types** là một lỗ hổng bảo mật khi hệ thống chỉ dựa vào **blacklist** để ngăn chặn việc upload các file nguy hiểm, nhưng không đủ hiệu quả hoặc bị bỏ sót một số loại file. Thay vì chỉ cho phép một số loại file an toàn, hệ thống cố gắng chặn các định dạng hoặc phần mở rộng file nguy hiểm như .exe, .php, hoặc .js. Tuy nhiên, nếu blacklist không đầy đủ hoặc dễ dàng bị bypass, kẻ tấn công có thể upload file nguy hiểm để thực hiện các hành vi như thực thi mã độc, chiếm quyền điều khiển server, hoặc đánh cắp dữ liệu.
+- Đơn giản có thể hiểu là việc tồn tại lỗ hổng này là do blacklist ko đủ.
+#### Overriding the server configuration
 - **Overriding the server configuration** hay ghi đè cấu hình máy chủ là một phương pháp hacker dùng để thay đổi cách máy chủ xử lý các file hoặc yêu cầu từ người dùng, nhằm thực thi mã độc hoặc thực hiện các hành vi trái phép. Trong bối cảnh bảo mật, phương pháp này thường liên quan đến việc tải lên các file cấu hình có khả năng điều chỉnh cách máy chủ xử lý một số loại file hoặc yêu cầu cụ thể. Khi hacker có thể ghi đè cấu hình máy chủ, họ có thể kiểm soát cách thức thực thi file và mở ra nhiều cách khai thác khác nhau.
 - Lấy ví dụ như một số máy chủ `Apache` hoặc `Nginx` cho phép sử dụng file cấu hình riêng ở cấp thư mục. Nếu máy chủ cho phép tải lên file cấu hình (ví dụ: '.htaccess' trên `Apache`), hacker có thể tận dụng điều này để ghi đè cấu hình và mở các lỗ hổng bảo mật.
 - Cụ thể hơn với:
@@ -75,38 +100,14 @@
     - **Override MIME Type hoặc file upload:**
         - Thay đổi MIME type để chỉ định kiểu file được xử lý theo cách khác, cho phép chạy mã tùy chỉnh. Ví dụ, hacker có thể cấu hình để xử lý file .jpg như một file PHP nếu máy chủ không giới hạn
 
-### Demo
-- Ở [đây](https://portswigger.net/web-security/file-upload/lab-file-upload-web-shell-upload-via-path-traversal) mình có 1 challenge demo.
-- Với chall này ta sẽ nói về kỹ thuật **path traversal**
-- **Path traversal** là một lỗ hổng bảo mật phổ biến trong các ứng dụng web. Kỹ thuật này cho phép kẻ tấn công truy cập các file hoặc thư mục trên máy chủ nằm ngoài phạm vi mà ứng dụng dự kiến, thường là bằng cách khai thác các điểm yếu trong việc kiểm tra và xử lý đường dẫn.
-- Cách hoạt động của Path Traversal
-    -Path traversal xảy ra khi ứng dụng không lọc hoặc không xử lý đúng dữ liệu đầu vào là đường dẫn file. Bằng cách truyền các ký tự đặc biệt như ../ (chỉ đường dẫn thư mục cha), kẻ tấn công có thể thoát khỏi thư mục hiện tại và truy cập vào các thư mục cấp cao hơn trong hệ thống file.
-- Ví dụ, nếu URL chứa đường dẫn file như sau:
-```bash
-http://example.com/view?file=images/photo.jpg
-```
-- Nếu ứng dụng không kiểm tra chặt chẽ tham số file, kẻ tấn công có thể thử sử dụng ../ để truy cập các file hệ thống nhạy cảm, chẳng hạn như:
-```bash
-http://example.com/view?file=../../../../etc/passwd
-```
-- Với chall này ta có thể upload được file php tùy thích.
-- Tuy nhiên server lại trả lại cho ta code dưới dạng text:)))
-- Ta sẽ thử gửi file vào 1 thư mục khác sau bằng kỹ thuật path traversal.
-- Xem chi tiết hơn tại [đây](https://owasp.org/www-community/attacks/Path_Traversal) nha.
-![image](https://github.com/user-attachments/assets/8addad33-aeb1-414e-aff5-99cb7b1a00ee)
-
-## Insufficient blacklisting of dangerous file types
-- **Insufficient blacklisting of dangerous file types** là một lỗ hổng bảo mật khi hệ thống chỉ dựa vào **blacklist** để ngăn chặn việc upload các file nguy hiểm, nhưng không đủ hiệu quả hoặc bị bỏ sót một số loại file. Thay vì chỉ cho phép một số loại file an toàn, hệ thống cố gắng chặn các định dạng hoặc phần mở rộng file nguy hiểm như .exe, .php, hoặc .js. Tuy nhiên, nếu blacklist không đầy đủ hoặc dễ dàng bị bypass, kẻ tấn công có thể upload file nguy hiểm để thực hiện các hành vi như thực thi mã độc, chiếm quyền điều khiển server, hoặc đánh cắp dữ liệu.
-- Đơn giản có thể hiểu là việc tồn tại lỗ hổng này là do blacklist ko đủ.
-### Overriding the server configuration
-- Overriding the server configuration là kỹ thuật cho phép kẻ tấn công thay đổi cấu hình server bằng các file cấu hình, thường là .htaccess trên Apache. Khi server cho phép upload .htaccess hoặc các file cấu hình khác, kẻ tấn công có thể lợi dụng nó để thực thi mã PHP, thay đổi quyền truy cập file, hoặc can thiệp vào chính sách bảo mật.
+- Nói một cách dễ hiểu hơn thì kỹ thuật này cho phép kẻ tấn công thay đổi cấu hình server bằng các file cấu hình, thường là .htaccess trên Apache. Khi server cho phép upload .htaccess hoặc các file cấu hình khác, kẻ tấn công có thể lợi dụng nó để thực thi mã PHP, thay đổi quyền truy cập file, hoặc can thiệp vào chính sách bảo mật.
 - Ví dụ khi ta có quyền upload file `.htaccess` ta có thể cho phép server xử lý các file .phtml như file PHP và thực thi mã bên trong.
 ```apache
 <FilesMatch ".*\.(php|php5|phtml)$">
     SetHandler application/x-httpd-php
 </FilesMatch>
 ```
-### Demo
+##### Demo
 - Ở [đây](https://portswigger.net/web-security/file-upload/lab-file-upload-web-shell-upload-via-extension-blacklist-bypass) mình có 1 challenge demo.
 - Quay lại chall. Ở đây ta sẽ ánh xạ `.l33t` thành `application/x-httpd-php` hay `.php` bằng cách dùng `.htaccess`. Tuy đây không phải **path traversal** mà là **overriding server configuration**.
 - Ta thực hiện như sau:
@@ -118,5 +119,45 @@ lệnh Apache sau:
     - Sau đó ta là tương tự như các demo trên tuy nhiên hãy gửi file `.l33t` thay vì `.php`
   
 ![image](https://github.com/user-attachments/assets/4911cc95-be1a-48c4-aed8-715288bf6ec7)
+#### Obfuscating file extensions
+- **Obfuscating file extensions** là kỹ thuật mà kẻ tấn công sử dụng để che giấu định dạng thực sự của file nhằm qua mặt các biện pháp kiểm tra bảo mật. Kỹ thuật này giúp file chứa mã độc hoặc mã thực thi có thể được tải lên mà không bị phát hiện, đặc biệt khi hệ thống chỉ kiểm tra phần mở rộng file mà không kiểm tra nội dung.
+- Đơn giản thì đó là cách thay đổi các đuôi mở rộng để by pass qua việc check của server.
+- Dưới đây là một vài cách để bạn thực hiện kỹ thuật này:
 
+| Kỹ thuật                             | Mô tả                                                                                          | Ví dụ                   |
+|--------------------------------------|-----------------------------------------------------------------------------------------------|-------------------------|
+| Thêm ký tự đặc biệt hoặc không hợp lệ | Sử dụng dấu chấm hoặc ký tự đặc biệt để gây nhầm lẫn trong phần mở rộng file                  | `shell.php.jpg`         |
+| Phần mở rộng kép                     | Đặt tên file với nhiều phần mở rộng, hệ thống kiểm tra chỉ xem xét phần cuối                  | `file.php.jpg`          |
+| Mã hóa tên file                      | Sử dụng mã hóa URL hoặc mã Unicode để thay đổi cách hiển thị phần mở rộng                     | `file.ph%70`            |
+| Phần mở rộng không phổ biến           | Đổi đuôi file sang phần mở rộng ít thấy nhưng vẫn có thể thực thi trên một số server          | `shell.phtml`           |
+| Chèn dấu cách hoặc ký tự vô hình     | Thêm khoảng trắng, dấu chấm hoặc ký tự không hiển thị ở cuối tên file để che giấu phần mở rộng | `file.php .jpg`         |
+- Vẫn còn rất nhiều cách khác để thực hiện kỹ thuật này ví dụ như ở [đây](https://book.hacktricks.xyz/pentesting-web/file-upload).
+
+### Flawed validation of the file's contents
+- Thay vì kiểm tra dựa trên các giá trị như `Content- Type` thì server có một số cách kiểm tra khác như là:
+    - Kiểm tra kích thước và cấu trúc nội dung:
+        - Ví dụ, khi server yêu cầu upload ảnh, nó có thể kiểm tra các thuộc tính của ảnh như kích thước hoặc độ phân giải. Nếu file không chứa thông tin về kích thước (ví dụ: file PHP), server có thể xác định rằng đây không phải là file ảnh và từ chối upload.
+    - Kiểm tra Magic Bytes:
+        - Một số loại file có các dãy byte đặc trưng (Magic Bytes) ở phần đầu hoặc cuối file giúp nhận diện loại file thật sự. Ví dụ:
+            - JPEG luôn bắt đầu với byte `FF D8 FF`.
+            - PNG bắt đầu với byte `89 50 4E 47`.
+            - PDF bắt đầu với `%PDF`.
+    - Xác thực chữ ký hoặc dấu hiệu đặc trưng:
+        - Server có thể kiểm tra nội dung và dấu hiệu cụ thể của file để chắc chắn rằng file tuân thủ đúng định dạng mong đợi.
+- Lợi dụng điều này ta hoàn toàn có thể điều chỉnh các request để by pass.
+### Exploiting file upload race conditions
+- **Exploiting File Upload Race Conditions** là một kỹ thuật tấn công khi kẻ tấn công lợi dụng race conditions (điều kiện tranh chấp) trong quá trình upload file để đánh lừa hệ thống thực hiện những hành vi không mong muốn.
+- **Race condition** là một lỗi xảy ra khi hai hoặc nhiều tiến trình hoặc thao tác truy cập và thao tác trên cùng một tài nguyên (như file hoặc dữ liệu) đồng thời mà không có sự đồng bộ hóa. Kết quả của race condition là hệ thống có thể không xử lý tài nguyên theo cách dự kiến, tạo ra các lỗ hổng bảo mật.
+- Trong trường hợp upload file, race condition có thể xuất hiện khi:
+    - Hệ thống upload file lên server và thực hiện kiểm tra loại file, kích thước, hoặc nội dung file để đảm bảo rằng file an toàn.
+    - Tuy nhiên, do việc kiểm tra và lưu file không diễn ra đồng bộ, kẻ tấn công có thể thay thế file hợp lệ bằng một file độc hại trong khoảng thời gian ngắn giữa kiểm tra và lưu trữ.
+- Cách thức by pass:
+    - Tải lên file hợp lệ: Kẻ tấn công bắt đầu tải lên một file hợp lệ (ví dụ: file .jpg) để vượt qua bước kiểm tra.
+    - Thay thế bằng file độc hại: Trong khi hệ thống đang kiểm tra file hợp lệ, kẻ tấn công đồng thời mở một kết nối khác để thay thế file hợp lệ bằng file chứa mã độc (ví dụ: file .php hoặc .js).
+    - Thực thi mã độc: Nếu thành công, file chứa mã độc sẽ được lưu trữ và có thể được thực thi trên server.
+- Ví Dụ
+    - Giả sử hệ thống cho phép upload ảnh hồ sơ người dùng và kiểm tra file upload có đúng định dạng .jpg hay không. Nếu hệ thống không có đồng bộ hóa (synchronization), kẻ tấn công có thể:
+    - Bắt đầu tải lên một file .jpg hợp lệ.
+    - Đồng thời mở một kết nối khác để thay thế file .jpg với một file .php chứa mã độc ngay sau khi hệ thống kiểm tra xong nhưng chưa kịp lưu trữ.
+    - File độc hại .php sẽ được lưu trữ trên server dưới dạng file ảnh nhưng có thể được thực thi như mã PHP.
 
