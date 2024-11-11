@@ -93,6 +93,7 @@ http://example.com/view?file=../../../../etc/passwd
 - Tuy nhiên server lại trả lại cho ta code dưới dạng text:)))
 - Ta sẽ thử gửi file vào 1 thư mục khác sau bằng kỹ thuật path traversal.
 
+![image](https://github.com/user-attachments/assets/8addad33-aeb1-414e-aff5-99cb7b1a00ee)
 
 
 ### Demo
