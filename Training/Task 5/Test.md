@@ -92,7 +92,12 @@ http://example.com/view?file=../../../../etc/passwd
 - Với chall này ta có thể upload được file php tùy thích.
 - Tuy nhiên server lại trả lại cho ta code dưới dạng text:)))
 - Ta sẽ thử gửi file vào 1 thư mục khác sau bằng kỹ thuật path traversal.
+<<<<<<< HEAD
 - Xem chi tiết hơn tại đây nha.
+=======
+
+![image](https://github.com/user-attachments/assets/8addad33-aeb1-414e-aff5-99cb7b1a00ee)
+>>>>>>> 185fcc3c93e25876eb332b8fe582ee24965262f9
 
 
 ### Demo
