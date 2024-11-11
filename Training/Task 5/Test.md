@@ -177,4 +177,21 @@ lệnh Apache sau:
     - Nếu server không kiểm tra nội dung file sau khi tải về, file độc hại sẽ được lưu và có thể được thực thi.
 
 ## Exploiting file upload vulnerabilities without remote code execution
+- Như cái tên thì đây là cách để tấn công không qua RCE trên server.
+- Một vài cách có thể kể đến như:
+    - Phishing và Defacement (Thay đổi giao diện):
+        - Kẻ tấn công có thể tải lên các file HTML hoặc JavaScript với mục đích giả mạo giao diện hoặc lừa người dùng (phishing). Ví dụ, một file HTML được thiết kế giống trang đăng nhập và khi người dùng truy cập sẽ bị lừa nhập thông tin đăng nhập của họ.
+    - Cross-Site Scripting (XSS):
+        - Nếu server cho phép tải lên các file HTML hoặc file chứa JavaScript và sau đó hiển thị file này cho người dùng khác, kẻ tấn công có thể nhúng mã XSS trong file. Khi người dùng truy cập file này, mã độc sẽ được thực thi trên trình duyệt của họ, giúp kẻ tấn công chiếm quyền điều khiển tài khoản, đánh cắp cookie hoặc thực hiện các hành động khác với quyền của người dùng.
+    - Stored Cross-Site Request Forgery (CSRF):
+        - Kẻ tấn công có thể upload một file hình ảnh hoặc HTML chứa mã độc CSRF. Khi người dùng mở file đó, mã CSRF có thể tự động gửi yêu cầu đến server, thực hiện các hành động như thay đổi mật khẩu hoặc gửi dữ liệu mà người dùng không hay biết.
+    - Information Disclosure (Rò rỉ thông tin):
+        - Kẻ tấn công có thể tải lên các file cấu hình, file đặc biệt hoặc mã độc để thu thập thông tin từ server. Một số server sẽ xử lý các file đặc biệt này và tiết lộ thông tin hệ thống nhạy cảm hoặc các chi tiết về cấu trúc thư mục. Ví dụ, tải lên một file .htaccess hoặc .git có thể dẫn đến rò rỉ thông tin cấu trúc của ứng dụng.
+    - Denial of Service (DoS):
+        - Một số lỗ hổng upload cho phép tải lên file có kích thước cực lớn hoặc số lượng file không giới hạn, dẫn đến việc đầy bộ nhớ, tài nguyên hệ thống bị quá tải và khiến server không thể xử lý các yêu cầu khác. Đây là một hình thức từ chối dịch vụ.
+    - Overwriting Important Files:
+        - Nếu server không xác thực tên file hoặc lưu file upload vào thư mục quan trọng, kẻ tấn công có thể ghi đè các file quan trọng. Ví dụ, nếu server cho phép upload file mà không đổi tên, kẻ tấn công có thể tải lên file với tên trùng với một file quan trọng để ghi đè, gây lỗi hoặc thay đổi cách hoạt động của ứng dụng.
 
+## Uploading files using PUT
+- **PUT** được sử dụng để tải lên hoặc thay thế một tài nguyên tại URL được chỉ định. Nó khác với phương thức **POST** thường được sử dụng để gửi dữ liệu, chẳng hạn như form hoặc file upload. Với **PUT**, client có thể chỉ định một URL cụ thể và tải lên file, dữ liệu hoặc tài nguyên khác đến đó.
+- **HTTP method PUT** được thiết kế để thay thế tài nguyên hiện tại tại một URL cụ thể, nhưng một số ứng dụng `web` hoặc `server` có thể không kiểm tra hoặc xác thực đúng cách khi sử dụng phương thức **PUT**, tạo ra lỗ hổng bảo mật.
