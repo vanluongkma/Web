@@ -92,14 +92,20 @@ http://example.com/view?file=../../../../etc/passwd
 - Với chall này ta có thể upload được file php tùy thích.
 - Tuy nhiên server lại trả lại cho ta code dưới dạng text:)))
 - Ta sẽ thử gửi file vào 1 thư mục khác sau bằng kỹ thuật path traversal.
-<<<<<<< HEAD
-- Xem chi tiết hơn tại đây nha.
-=======
-
+- Xem chi tiết hơn tại [đây](https://owasp.org/www-community/attacks/Path_Traversal) nha.
 ![image](https://github.com/user-attachments/assets/8addad33-aeb1-414e-aff5-99cb7b1a00ee)
->>>>>>> 185fcc3c93e25876eb332b8fe582ee24965262f9
 
-
+## Insufficient blacklisting of dangerous file types
+- **Insufficient blacklisting of dangerous file types** là một lỗ hổng bảo mật khi hệ thống chỉ dựa vào **blacklist** để ngăn chặn việc upload các file nguy hiểm, nhưng không đủ hiệu quả hoặc bị bỏ sót một số loại file. Thay vì chỉ cho phép một số loại file an toàn, hệ thống cố gắng chặn các định dạng hoặc phần mở rộng file nguy hiểm như .exe, .php, hoặc .js. Tuy nhiên, nếu blacklist không đầy đủ hoặc dễ dàng bị bypass, kẻ tấn công có thể upload file nguy hiểm để thực hiện các hành vi như thực thi mã độc, chiếm quyền điều khiển server, hoặc đánh cắp dữ liệu.
+- Đơn giản có thể hiểu là việc tồn tại lỗ hổng này là do blacklist ko đủ.
+### Overriding the server configuration
+- Overriding the server configuration là kỹ thuật cho phép kẻ tấn công thay đổi cấu hình server bằng các file cấu hình, thường là .htaccess trên Apache. Khi server cho phép upload .htaccess hoặc các file cấu hình khác, kẻ tấn công có thể lợi dụng nó để thực thi mã PHP, thay đổi quyền truy cập file, hoặc can thiệp vào chính sách bảo mật.
+- Ví dụ khi ta có quyền upload file `.htaccess` ta có thể cho phép server xử lý các file .phtml như file PHP và thực thi mã bên trong.
+```apache
+<FilesMatch ".*\.(php|php5|phtml)$">
+    SetHandler application/x-httpd-php
+</FilesMatch>
+```
 ### Demo
 - Ở [đây](https://portswigger.net/web-security/file-upload/lab-file-upload-web-shell-upload-via-extension-blacklist-bypass) mình có 1 challenge demo.
 - Quay lại chall. Ở đây ta sẽ ánh xạ `.l33t` thành `application/x-httpd-php` hay `.php` bằng cách dùng `.htaccess`. Tuy đây không phải **path traversal** mà là **overriding server configuration**.
