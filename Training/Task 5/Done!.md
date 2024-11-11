@@ -195,3 +195,36 @@ lệnh Apache sau:
 ## Uploading files using PUT
 - **PUT** được sử dụng để tải lên hoặc thay thế một tài nguyên tại URL được chỉ định. Nó khác với phương thức **POST** thường được sử dụng để gửi dữ liệu, chẳng hạn như form hoặc file upload. Với **PUT**, client có thể chỉ định một URL cụ thể và tải lên file, dữ liệu hoặc tài nguyên khác đến đó.
 - **HTTP method PUT** được thiết kế để thay thế tài nguyên hiện tại tại một URL cụ thể, nhưng một số ứng dụng `web` hoặc `server` có thể không kiểm tra hoặc xác thực đúng cách khi sử dụng phương thức **PUT**, tạo ra lỗ hổng bảo mật.
+
+
+# Root-me
+### File upload - Double extensions
+- Với chall này ta chỉ cần thay đổi đuôi mở rộng thành `.php.png` là có thể by pass được.
+- Đầu tiên mình thử `ls` xem có những file gì.
+
+![image](https://github.com/user-attachments/assets/09ab1444-f736-47dc-baf8-0439b7f0c1f5)
+- Ta biết flag nằm ở file `.passwd`. Lúc này thì cần tìm được file và cat ra thôi.
+- Thử `../` từng thư mục rồi cat thử thôi.
+
+![image](https://github.com/user-attachments/assets/b36da3d6-62fa-4703-ad53-252d4647c812)
+
+### File upload - MIME type
+- Tương tự chall trên tuy nhiên đuôi mở rộng sẽ là `.png.php`
+- Sau khi by pass được thì ta tiếp tục check file `.passwd` nằm ở đâu và cat ra.
+
+![image](https://github.com/user-attachments/assets/09193d11-e34c-47bc-bde1-740c1dbd6fc4)
+
+
+### File upload - Null byte
+- Như tên bài thì ta sửa đuôi mở rộng theo null byte.
+- Ở đây mình dùng `.php%00.png` send request và thu flag.
+
+![image](https://github.com/user-attachments/assets/3c01c9b1-2ed4-4eaa-bb1c-3f50caedb05c)
+
+### File upload - ZIP
+- Đây mình up file nên thì sẽ được giải nén.
+- Mình thử nén lại xong upload. Tuy nhiên vẫn không thể mở.
+
+![image](https://github.com/user-attachments/assets/fb9e43d2-fbcb-4418-91ff-d8396b56742c)
+
+- Mình làm theo cách trên:)) và có được flag.
