@@ -161,3 +161,20 @@ lệnh Apache sau:
     - Đồng thời mở một kết nối khác để thay thế file .jpg với một file .php chứa mã độc ngay sau khi hệ thống kiểm tra xong nhưng chưa kịp lưu trữ.
     - File độc hại .php sẽ được lưu trữ trên server dưới dạng file ảnh nhưng có thể được thực thi như mã PHP.
 
+#### Race conditions in URL-based file uploads
+- Đây là một lỗ hổng bảo mật xảy ra khi ứng dụng cho phép người dùng tải file lên server thông qua `URL` thay vì trực tiếp từ máy tính của họ. Khi đó, server sẽ tải file từ `URL` được cung cấp và lưu nó trên hệ thống. **Race condition** xảy ra khi có thể can thiệp vào quá trình tải file này bằng cách thay đổi nội dung của file tại `URL` hoặc chuyển hướng `URL` để trỏ đến file độc hại ngay trước khi server lưu file.
+- Cách by pass:
+    - Người dùng cung cấp `URL` hợp lệ: Kẻ tấn công cung cấp một `URL` trỏ đến file hợp lệ (ví dụ: một file ảnh hợp lệ) để tải lên.
+    - Tấn công race condition: Trong khoảng thời gian server đang tải file từ `URL` và kiểm tra tính hợp lệ của file, kẻ tấn công can thiệp vào `URL` gốc bằng cách:
+        - Chuyển hướng `URL`: Thay đổi `URL` để trỏ đến một file độc hại khác, ví dụ như một file PHP hoặc mã độc.
+        - Thay thế nội dung file tại `URL`: Cập nhật nội dung file tại `URL` để biến file hợp lệ thành một file chứa mã độc hoặc một script.
+    - Server lưu file độc hại: Nếu server không kiểm tra lại file sau khi tải hoặc không đồng bộ hóa quá trình tải và lưu, file độc hại sẽ được lưu trên server và có thể thực thi mã độc.
+- Ví dụ:
+- Giả sử server cho phép người dùng upload ảnh thông qua `URL`, và ứng dụng tải ảnh từ `URL` và lưu lại trong thư mục của server.
+
+    - Kẻ tấn công cung cấp `URL` trỏ đến một file ảnh hợp lệ: `http://example.com/profile.jpg`.
+    - Khi server đang trong quá trình tải file từ `URL`, kẻ tấn công thay đổi profile.jpg tại` http://example.com` để trỏ đến một file PHP chứa mã độc, hoặc chuyển hướng `URL` tới một file độc hại khác.
+    - Nếu server không kiểm tra nội dung file sau khi tải về, file độc hại sẽ được lưu và có thể được thực thi.
+
+## Exploiting file upload vulnerabilities without remote code execution
+
