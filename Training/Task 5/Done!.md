@@ -228,3 +228,8 @@ lệnh Apache sau:
 ![image](https://github.com/user-attachments/assets/fb9e43d2-fbcb-4418-91ff-d8396b56742c)
 
 - Mình làm theo cách trên:)) và có được flag.
+
+# Challenge.zip
+## LV1
+- LV1 chắc cơ bản nên mình upload file `.php` luôn.
+- Cũng đúng nè:))))
