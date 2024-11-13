@@ -249,3 +249,127 @@ lệnh Apache sau:
 - Upload được file `.png`. Sau đó mình thay đổi đuôi mở rộng `.png.php` và bypass được.
 
 ![image](https://github.com/user-attachments/assets/627a0670-7bb2-4611-b252-e7d53b753170)
+- Nếu có source thì ta có thể phân tich được lý do tại sao có thể by pass được server (thực tế chả ai cho ta source đâu nhưng chall này cho nha).
+`?debug`
+```php
+<?php
+    // error_reporting(0);
+
+    // Create folder for each user
+    session_start();
+    if (!isset($_SESSION['dir'])) {
+        $_SESSION['dir'] = 'upload/' . session_id();
+    }
+    $dir = $_SESSION['dir'];
+    if ( !file_exists($dir) )
+        mkdir($dir);
+
+    if(isset($_GET["debug"])) die(highlight_file(__FILE__));
+    if(isset($_FILES["file"])) {
+        $error = '';
+        $success = '';
+        try {
+            $filename = $_FILES["file"]["name"];
+            $extension = explode(".", $filename)[1];
+            if ($extension === "php") {
+                die("Hack detected");
+            }
+            $file = $dir . "/" . $filename;
+            move_uploaded_file($_FILES["file"]["tmp_name"], $file);
+            $success = 'Successfully uploaded file at: <a href="/' . $file . '">/' . $file . ' </a><br>';
+            $success .= 'View all uploaded file at: <a href="/' . $dir . '/">/' . $dir . ' </a>';
+        } catch(Exception $e) {
+            $error = $e->getMessage();
+        }
+    }
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <title>PHP upload Level 2</title>
+
+        <!-- This is for UI only -->
+        <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css" integrity="sha512-P5MgMn1jBN01asBgU0z60Qk4QxiXo86+wlFahKrsQf37c9cro517WzVSPPV1tDKzhku2iJ2FVgL67wG03SGnNA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    </head>
+    <body>
+        <br/>
+        <br/>
+        <h3 class="display-4 text-center">File upload workshop</h3>
+        <h4 class="display-4 text-center">Level 2</h4>
+        <p class="display-5 text-center">Goal: RCE me!</p>
+
+        <br/>
+        <div class="container">
+            <a href="/?debug">Debug source</a>
+            <form method="post" enctype="multipart/form-data">
+                Select file to upload:
+                <input type="file" name="file" id="file">
+                <br/>
+                <input type="submit">
+            </form>
+            <span style="color:red"><?php echo $error; ?></span>
+            <span style="color:green"><?php echo $success; ?></span>
+        </div>
+
+    </body>
+
+    <footer class="container">
+        <br/>
+        <br/>
+        <br/>
+        <button class="float-left btn btn-dark" type="button" onclick="prevLevel()">Previous level</button>
+        <button class="float-right btn btn-dark" type="button" onclick="nextLevel()">Next level</button>
+
+        <script>
+            function prevLevel() {
+                const url = new URL(origin);
+                url.port = (parseInt(url.port) - 1).toString();
+                location.href = url.toString();
+            }
+            function nextLevel() {
+                const url = new URL(origin);
+                url.port = (parseInt(url.port) + 1).toString();
+                location.href = url.toString();
+            }
+        </script>
+
+    </footer>
+</html>
+1
+```
+- Ta sẽ chỉ chú ý phần:
+```php
+        try {
+            $filename = $_FILES["file"]["name"];
+            $extension = explode(".", $filename)[1];
+            if ($extension === "php") {
+                die("Hack detected");
+            }
+```
+- Lý do là vì phần này cho ta biết cách thức để file hợp lệ có thể upload.
+- Như code trên thì ta thấy file được upload sẽ chia tên ra thành mảng sau mỗi dấu `.`.
+- VD: `bypass.png.php` thì sẽ được chia làm mảng 3 phần tử: `['bypass', 'png', 'php']`.
+- Và biến `extension` sẽ lưu giá trị của phần tử thứ 2 trong mảng. Nếu `$extension === "php"` thì file sẽ ko được upload.
+## LV3 
+- Mình có thử gửi 1 loạt các đuôi khác nhau nhưng mãi mới được `.phtml`. [hacktrick](https://book.hacktricks.xyz/pentesting-web/file-upload)
+
+![image](https://github.com/user-attachments/assets/b92e1b32-dd87-47ed-a7b1-dfa49a269a8e)
+- Dựa vào source code thì mình có:
+```php
+        try {
+            $filename = $_FILES["file"]["name"];
+            $extension = end(explode(".", $filename));
+            if ($extension === "php") {
+                die("Hack detected");
+            }
+```
+- Tương tự lv2 nhưng ở đây thì `extension` mang giá trị cuối cùng của mảng nên không lấy shell được như lv2.
+- Thì mình đổi tên của file thôi. Tên khác nhưng chức năng tương tự `.php`.
+- Tới đây thì mình lại muốn thử xem lv2 có bypass dược bằng cách này không:))
+- Mình đã thử và được nha.
