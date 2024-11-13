@@ -245,3 +245,7 @@ lệnh Apache sau:
 - Lần này mình lại tiếp tục thử upfile `.php` tuy nhiên không upload được.
 
 ![image](https://github.com/user-attachments/assets/35daeca7-e586-4a9c-8332-87b9fe67cce9)
+- Mình sẽ thử upload các loại file khác vì chả có thông tin hay source cho biết có thể upload những loại file như thế nào.
+- Upload được file `.png`. Sau đó mình thay đổi đuôi mở rộng `.png.php` và bypass được.
+
+![image](https://github.com/user-attachments/assets/627a0670-7bb2-4611-b252-e7d53b753170)
