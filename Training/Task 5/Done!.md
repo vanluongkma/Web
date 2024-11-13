@@ -373,3 +373,14 @@ lệnh Apache sau:
 - Thì mình đổi tên của file thôi. Tên khác nhưng chức năng tương tự `.php`.
 - Tới đây thì mình lại muốn thử xem lv2 có bypass dược bằng cách này không:))
 - Mình đã thử và được nha.
+## LV4
+- Sau khi thử khá nhiều cách by pass bằng phương pháp thay đổi đuôi mở rộng thì đều không được.
+
+![image](https://github.com/user-attachments/assets/4aec4a5d-ceef-42e6-b2d3-777196cc9d07)
+
+- Mình thấy có `Apache config` nên thử bằng `.htaccess` để thay đổi cấu hình apache.
+- Mình thay đổi `caycon` thành `php`.
+
+![image](https://github.com/user-attachments/assets/ed12c633-7f86-4ec2-8d82-1a85d389390c)
+
+![image](https://github.com/user-attachments/assets/64f730fe-6b88-4228-b7cb-b0aa37544586)
