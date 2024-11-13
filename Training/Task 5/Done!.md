@@ -233,3 +233,15 @@ lệnh Apache sau:
 ## LV1
 - LV1 chắc cơ bản nên mình upload file `.php` luôn.
 - Cũng đúng nè:))))
+
+![image](https://github.com/user-attachments/assets/1ea46582-8255-4afc-8f4c-de7d83d88a3a)
+- `cat /secret.txt` thôi.
+
+![image](https://github.com/user-attachments/assets/ab327586-e993-4425-bfac-ec1f85efbf53)
+- Hơi troll nha:))
+- Ban đầu mình nghĩ là fake flag thiệt nên thử đủ cách khác nhau.
+
+## LV2
+- Lần này mình lại tiếp tục thử upfile `.php` tuy nhiên không upload được.
+
+![image](https://github.com/user-attachments/assets/35daeca7-e586-4a9c-8332-87b9fe67cce9)
