@@ -387,4 +387,14 @@ lệnh Apache sau:
 ![image](https://github.com/user-attachments/assets/64f730fe-6b88-4228-b7cb-b0aa37544586)
 
 ## LV5
-- 
+- Đọc source:
+```php
+    try {
+        $mime_type = $_FILES["file"]["type"];
+        if (!in_array($mime_type, ["image/jpeg", "image/png", "image/gif"])) {
+            die("Hack detected");
+        }
+```
+- Chall này chỉ cần sửa `Content-Type: image/jpeg` là oke r:)))
+
+![image](https://github.com/user-attachments/assets/a1c06b7f-a7f8-4203-a409-1860df93024f)
